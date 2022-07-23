@@ -1,0 +1,19 @@
+{% extends "formula_app/base.html" %}
+{% load static %}
+
+{% block links %}
+<link rel="stylesheet" type="text/css" href="{% static 'formula_app/css/otvorena-vest.css' %}?{% now 'U' %}">
+{% endblock links %}
+
+{% block content %}
+    <!-- TODO najdi kako od poveke JSON files da stavas raznomerno vesti -->
+    <div class="otvorena-novost">
+        <img src="{{ novost.slika }}">
+
+        <h2>{{ novost.naslov }}</h2>
+
+        <p>{{ novost.tekst }}</p>
+    </div>
+
+
+{%  endblock content %}

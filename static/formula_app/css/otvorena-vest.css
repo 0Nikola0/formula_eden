@@ -1,0 +1,19 @@
+.otvorena-novost{
+    display: flex;
+    justify-content: center;
+    flex-flow: column wrap;
+    text-align: justify;
+    margin-inline: 15vw;
+    margin-block: 10px;
+    font-size: 14px; /* za fallback ako toa dole ne rabote na nekoj browser */
+    font-size: max(14px, 1.3vw);
+}
+
+.otvorena-novost > img{
+    width: 100%;
+    margin-block: 20px;
+}
+
+.otvorena-novost p{
+    margin-block: 10px 40px;
+}

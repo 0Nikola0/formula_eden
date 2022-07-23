@@ -1,0 +1,255 @@
+:root {
+    --f1-crvena: #FF1801;
+    --f1-temna: #FF3E2B;
+    --off-white: #FAF9F6;
+    --off-gray: rgb(32, 32, 32);
+
+    /* --redbull-color: blue; */
+    --redbull-color: rgb(54, 113, 198);
+    /* --ferrari-color: red; */
+    --ferrari-color: rgb(249, 21, 54);
+    /* --mercedes-color: rgb(52, 238, 222); */
+    --mercedes-color: rgb(108, 211, 191);
+    /* --mclaren-color: orange; */
+    --mclaren-color: rgb(245, 128, 32);
+    /* --alpine-color: rgb(68, 68, 223); */
+    --alpine-color: rgb(34, 147, 209);
+    /* --aston-martin-color: green; */
+    --aston-martin-color: rgb(53, 140, 117);
+    /* --alpha-tauri-color: rgb(87, 87, 87); */
+    --alpha-tauri-color: rgb(94, 143, 170);
+    /* --alfa-romeo-color: rgb(170, 0, 0); */
+    --alfa-romeo-color: rgb(201, 45, 75);
+    /* --williams-color: rgb(54, 110, 184); */
+    --williams-color: rgb(55, 190, 221);
+    /* --haas-color: rgb(163, 163, 163); */
+    --haas-color: rgb(182, 186, 189);
+}
+
+/* FONTOVI */
+
+@font-face {
+    font-family: f1-normal;
+    src: url(../fonts/Formula1-Regular.otf);
+}
+
+@font-face {
+    font-family: f1-normal;
+    src: url(../fonts/Formula1-Bold.otf);
+    font-weight: bold;
+}
+
+/* END FONTOVI */
+.plasman-container{
+    display: flex;
+    flex-flow: column wrap;
+    width: 100%;
+    margin-inline: 0;
+    margin-block: 10px;
+}
+
+.plasman-vozaci{
+    display: flex;
+    flex-flow: column;
+    font-size: 13px; /* za fallback ako toa dole ne rabote na nekoj browser */
+    font-size: max(13px, 1.2vmax);
+    margin: 0;
+}
+
+.drugio-font{
+    font-family: f1-normal;
+}
+
+.p-vozac{
+    display: flex;
+    padding: 5px;
+    margin-block: 10px;
+    width: clamp(350px, 90%, 900px);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 0px 8px 8px 0px;
+    background-color: white;
+    transition: 0.3s;
+}
+
+.p-vozac:hover{
+    font-size: 1.5em;
+    height: 150px;
+    /* color: white; */
+    /* background-color: #5d5b58; */
+    /* background-color: var(--off-gray); */
+}
+
+.slika-vozac{
+    margin-right: 25px;
+    width: 80px;
+    background: none;
+    transition: 0.5s;
+}
+
+.p-vozac:hover #nema-hover{
+    display: none;
+}
+
+#nema-hover{
+    display: flex;
+}
+
+#samo-hover{
+    display: none;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.p-vozac:hover #samo-hover{
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    /*  */
+    margin-block: 1px;
+    width: max(130px, 20%);
+    transition: 1s;
+}
+
+.p-vozac:hover .poeni{
+    margin: 0;
+    margin-bottom: 2px;
+}
+
+.p-vozac>h2{
+    font-size: 20px; /* za fallback ako toa dole ne rabote na nekoj browser */
+    font-size: max(20px, 1.7vmax);
+    margin-right: 0;
+    margin-left: max(10px, 3%);
+    /* padding-right: max(10px, 3%); */
+    /* border-right: 5px solid red; */
+}
+
+.vozac-ime-blok{
+    margin-inline: 20px;
+    margin-block: 5px;
+    padding-left: max(10px, 3%);
+    border-left: 5px solid red;
+}
+
+.vozac-ime-blok>div:first-child{
+    margin-bottom: 5px;
+}
+
+.vozac-ime-blok>div:nth-child(2){
+    color: black;
+}
+
+.zname{
+    display: none;
+    width: max(10%, 30px);
+    border-radius: 4px;
+    margin: 15px 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+.p-vozac:hover .zname{
+    display: block;
+}
+
+.poeni{
+    min-width: 75px;
+    margin-right: 3%;
+    font-size: 20px; /* za fallback ako toa dole ne rabote na nekoj browser */
+    font-size: max(14px, 1.2vmax);
+    z-index: 1;
+    max-height: 30px;
+    padding: 5px 8px;
+    border-radius: 15px;
+    color: black;
+    background-color: rgb(233, 233, 233);
+}
+
+
+/* boi po timovi */
+
+.boja-Red-Bull-Racing{
+    border-color: var(--redbull-color);
+}
+
+.boja-Ferrari{
+    border-color: var(--ferrari-color);
+}
+
+.boja-Mercedes{
+    border-color: var(--mercedes-color);
+}
+
+.boja-McLaren{
+    border-color: var(--mclaren-color);
+}
+
+.boja-Alpine{
+    border-color: var(--alpine-color);
+}
+
+.boja-Aston-Martin{
+    border-color: var(--aston-martin-color);
+}
+
+.boja-AlphaTauri{
+    border-color: var(--alpha-tauri-color);
+}
+
+.boja-Alfa-Romeo{
+    border-color: var(--alfa-romeo-color);
+}
+
+.boja-Williams{
+    border-color: var(--williams-color);
+}
+
+.boja-Haas-F1-Team{
+    border-color: var(--haas-color);
+}
+
+
+
+.p-vozac:hover .text-boja-Red-Bull-Racing{
+    color: var(--redbull-color);
+}
+
+.p-vozac:hover .text-boja-Ferrari{
+    color: var(--ferrari-color);
+}
+
+.p-vozac:hover .text-boja-Mercedes{
+    color: var(--mercedes-color);
+}
+
+.p-vozac:hover .text-boja-McLaren{
+    color: var(--mclaren-color);
+}
+
+.p-vozac:hover .text-boja-Alpine{
+    color: var(--alpine-color);
+}
+
+.p-vozac:hover .text-boja-Aston-Martin{
+    color: var(--aston-martin-color);
+}
+
+.p-vozac:hover .text-boja-AlphaTauri{
+    color: var(--alpha-tauri-color);
+}
+
+.p-vozac:hover .text-boja-Alfa-Romeo{
+    color: var(--alfa-romeo-color);
+}
+
+.p-vozac:hover .text-boja-Williams{
+    color: var(--williams-color);
+}
+
+.p-vozac:hover .text-boja-Haas-F1-Team{
+    color: var(--haas-color);
+}
+
+
+
+
+

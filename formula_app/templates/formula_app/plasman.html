@@ -1,0 +1,70 @@
+{% extends "formula_app/base.html" %}
+{% load static %}
+{% load formatter %}
+
+{% block links %}
+<link rel="stylesheet" type="text/css" href="{% static 'formula_app/css/plasman.css' %}?{% now 'U' %}">
+{% endblock links %}
+
+{% block content %}
+
+<div class="plasman-container">
+
+    <h2 id="vozaci">Возачи</h2>
+    <div class="plasman-vozaci">
+
+        {% for vozac in vozaci %}
+
+        <div id="vozaci" class="p-vozac">
+            <h2>{{ vozac.pozicija }}</h2>
+            <div class="drugio-font vozac-ime-blok boja-{{ vozac.tim.ime|zameni_prazno_mesto }}" >
+                <div>
+                    {{ vozac.ime }} <b>{{ vozac.prezime }}</b>
+                </div>
+                <div class="text-boja-{{ vozac.tim.ime.split|join:'-' }}">{{ vozac.tim.ime }}</div>
+                
+                <!-- TODO Ovoa treba so imgs so se u STATIC foldero ne od internet da gi dava -->
+                <img class="zname" src="https://www.countries-ofthe-world.com/flags-normal/flag-of-{{ vozac.drzava|zameni_procent_dvaese|zameni_prazno_mesto }}.png">
+                
+                <!-- ^ ne rabote so static -->
+                <!-- <img src="{% static 'formula_app/imgs/flags/{{ vozac.nationality }}.png' %}"  -->
+                
+            </div>
+            <!-- TODO ne treba vaka racno path da e treba so %static% -->
+            <div class="slika-vozac" id="nema-hover">
+                <span class="poeni"><b>{{ vozac.poeni }}</b> pts</span>
+            </div>
+
+            <div class="slika-vozac" id="samo-hover" style='background-image: url("{% static vozac.slika %}")'>
+                <span class="poeni"><b>{{ vozac.poeni }}</b> pts</span>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+    <h2 id="timovi">Тимови</h2>
+    <div id="timovi" class="plasman-vozaci">
+
+        {% for tim in timovi %}
+
+        <div class="p-vozac">
+            <h2>{{ tim.pozicija }}</h2>
+            <div class="drugio-font vozac-ime-blok boja-{{ tim.ime|zameni_prazno_mesto }}" >
+                <div class="text-boja-{{ tim.ime.split|join:'-' }}">{{ tim.ime }}</div>
+                
+            </div>
+            <!-- TODO ne treba vaka racno path da e treba so %static% -->
+            <div class="slika-vozac" id="nema-hover">
+                <span class="poeni"><b>{{ tim.poeni }}</b> pts</span>
+            </div>
+
+            <div class="slika-vozac" id="samo-hover" style='background-image: url("{% static vozac.slika %}")'>
+                <span class="poeni"><b>{{ tim.poeni }}</b> pts</span>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock content %}

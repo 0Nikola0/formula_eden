@@ -1,0 +1,46 @@
+*{
+    margin: auto;
+    /* TODO treba so STATIC ovoa nekako ne e dobro vaka */
+    --bgFile: url("../imgs/odbrojuvanjeBackground.jpg");
+}
+
+html{
+    height: 100%;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: var(--bgFile) center no-repeat;
+    background-color: #15151d;
+    background-size: cover;
+    background-position: center;
+    background-position-y: 20vh;
+    color: white;
+}
+
+.countdown{
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+
+.countdown>h1{
+    display:inline-block;
+}
+
+.strelka{
+    display: flex;
+    position: absolute;
+    bottom: 10px;
+    justify-content: center;
+}
+
+.strelka>img{
+    /* position: absolute; */
+    width: clamp(20px, 10%, 50px);
+    
+}

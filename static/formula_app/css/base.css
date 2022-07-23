@@ -1,0 +1,96 @@
+* {
+    box-sizing: border-box;
+    margin: auto;
+}
+
+:root {
+    --f1-crvena: #FF1801;
+    --f1-temna: #FF3E2B;
+    --off-white: #FAF9F6;
+}
+
+body {
+    background-color: var(--off-white);
+    height: 100vh;
+    min-width: 350px;
+    font-family: sans-serif;
+}
+
+header {
+    position: -webkit-sticky;
+    background-color: white;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 5px;
+    border-bottom: solid 2px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px; /* za fallback ako toa dole ne rabote na nekoj browser */
+    font-size: max(15px, 1.4vw);
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%
+}
+
+.new-menu{
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 5px;
+    font-weight: 800;
+    font-size: 25px; /* za fallback ako toa dole ne rabote na nekoj browser */
+    font-size: max(25px, 1.5vw);
+    color: var(--f1-crvena);
+}
+
+/* hamburger menu START */
+.menu-icon{
+    /* z-index: 1; */ /*ako hamburger menu e i za open i za close */
+    cursor: pointer;
+    width: clamp(35px, 3.5vw, 80px);
+    height: 34px;
+    margin-left: 10px;
+    margin-right: 0;
+    border-radius: 10px 0;
+}
+.menu-bar{
+    width: clamp(35px, 3.5vw, 80px);
+    height: 6px;
+    margin: 4px 0;
+    border-radius: 10px 0;
+    background-color: var(--f1-crvena);
+}
+.menu-icon:hover{
+    opacity: 0.5;
+}
+/* hamburger menu END */
+
+.nav-but {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60vw;
+    height: 15%;
+    border-radius: 30px 0;
+    color: white;
+    text-decoration: none;
+    font-size: 16px; /* za fallback ako toa dole ne rabote na nekoj browser */
+    font-size: max(16px, 1.35vmax);
+    font-weight: bolder;
+    background-color: var(--f1-crvena);
+}
+
+.nav-but:hover, .nav-but:active {
+    color: var(--f1-crvena) !important;
+    font-weight: bolder;
+    background-color: white;
+    cursor: pointer;
+    /* da ne moze da selektira teksto (na mobile ne izgleda dobro inace) */
+    -webkit-user-select: none;  /* Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* IE10+/Edge */
+    user-select: none;          /* Standard */
+}

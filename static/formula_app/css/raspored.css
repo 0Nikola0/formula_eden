@@ -1,0 +1,63 @@
+:root {
+    --f1-crvena: #FF1801;
+    --f1-temna: #FF3E2B;
+    --off-white: #FAF9F6;
+    --off-gray: rgb(32, 32, 32);
+    --zelena: rgb(26, 201, 50);
+}
+
+.content{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.trka{
+    display: flex;
+    flex-flow: column;
+    overflow: wrap;
+    /* min-width: 250px; */
+    width: max(250px, 30%);
+    margin: 20px;
+    padding-block: 12px;
+    padding-inline: 20px;
+    border-radius: 10px 0;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    font-size: 12px; /* za fallback ako toa dole ne rabote na nekoj browser */
+    font-size: max(12px, 1.1vw);
+    color: black;
+    text-decoration: none;
+    /* transition: 0.5s; */
+}
+
+.trka:hover{
+    /* background-color: var(--off-gray); */
+    /* color: white; */
+    border: 0;
+    border-top: 5px solid;
+    margin-top: 15px;
+    border-color: var(--f1-crvena);
+}
+
+.trka:hover .trka>img{
+    display: none;
+}
+
+.trka>img{
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+
+.Complete{
+    border-top: 3px solid;
+    margin-top: 17px;
+    border-color: var(--off-gray);
+}
+
+.Confirmed{
+    border-top: 3px solid;
+    margin-top: 17px;
+    border-color: var(--zelena);
+}

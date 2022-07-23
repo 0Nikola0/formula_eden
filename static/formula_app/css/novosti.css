@@ -1,0 +1,58 @@
+:root {
+    --f1-crvena: #FF1801;
+}
+
+.vesti {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* height: 550px; */
+}
+
+.karticka {
+    display: flex;
+    flex-flow: column wrap;
+    margin-top: 20px;
+    margin-inline: 10px;
+    /* -------- */
+    align-items: center;
+    min-width: 270px;
+    width: 30%;
+    /* max-width: 300px;  */
+    /* width: clamp(220px, 50%, 350px); */
+    
+
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 30px 0;
+    padding-bottom: 18px;
+}
+
+.karticka:hover{
+    /* background-color: rgb(48, 48, 48); */
+    /* color: white; */
+    border-top: 5px solid;
+    /* border-left: 2px solid; */
+    border-radius: 35px 3px 30px 0px;
+    margin-top: 15px;
+    /* margin-inline: 5px; */
+    border-color: var(--f1-crvena);
+}
+
+.karticka>img {
+    width: 100%;
+    border-radius: 30px 3px 3px 3px;
+}
+
+.karticka>h2{
+    text-align: center;
+}
+
+.karticka>h2, .karticka p{
+    padding-inline: 10px;
+    padding-top: 8px;
+}
+
+

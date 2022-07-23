@@ -1,0 +1,23 @@
+{% extends "formula_app/base.html" %}
+{% load static %}
+
+{% block links %}
+<link rel="stylesheet" type="text/css" href="{% static 'formula_app/css/novosti.css' %}?{% now 'U' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'formula_app/css/manage.css' %}?{% now 'U' %}">
+{% endblock links %}
+
+{% block content %}
+<div class="manage-container">
+    <form action="#" method="get" class="btn-container">
+        <input type="submit" class="update-btn" value="UPDATE DRIVER STANDINGS" name="update_driver_standings">
+        <input type="submit" class="update-btn" value="UPDATE TEAM STANDINGS" name="update_team_standings">
+        <input type="submit" class="update-btn" value="UPDATE RACES" name="update_races">
+        <input type="submit" class="update-btn vesti-btn" value="UPDATE TELMA VESTI" name="update_telma_vesti">
+        <input type="submit" class="update-btn vesti-btn" value="UPDATE SPORTSKIMK VESTI" name="update_sportskimk_vesti">
+        <input type="submit" class="update-btn vesti-btn" value="UPDATE SPORTEDEN VESTI" name="update_sporteden_vesti">
+    </form>
+    <code>
+        {{ status_message }}
+    </code>
+</div>
+{% endblock content %}

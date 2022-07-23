@@ -1,0 +1,35 @@
+:root {
+    --f1-crvena: #FF1801;
+    --f1-temna: #FF3E2B;
+    --off-white: #FAF9F6;
+}
+
+.content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: max(250px, 80%);
+    padding-top: 20px;
+}
+
+.staza{
+    height: 70vh;
+    stroke-width: 20px;
+}
+
+.inf{
+    font-weight: bold;
+    padding: 10px;
+    margin-block: 15px;
+    border-left: solid 3px var(--f1-crvena);
+    border-top: solid 3px var(--f1-crvena);
+    border-radius: 10px 0px;
+}
+
+.inf>small{
+    float: left;
+    
+    color: gray;
+    font-weight: normal;
+}
+

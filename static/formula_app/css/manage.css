@@ -1,0 +1,42 @@
+:root {
+    --f1-crvena: #FF1801;
+    --f1-temna: #FF3E2B;
+}
+
+.manage-container{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    margin-block: 20vh;
+    width: 60vw;
+}
+
+.btn-container{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.update-btn{
+    margin-block: 10px;
+    font-weight: bold;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--f1-crvena);
+    height: 50px;
+    width: 250px;
+}
+
+.update-btn:hover{
+    background-color: var(--f1-temna);
+}
+
+.vesti-btn{
+    background-color: rgb(56, 11, 129);
+}
+
+.vesti-btn:hover{
+    background-color: rgb(34, 6, 80);
+}
