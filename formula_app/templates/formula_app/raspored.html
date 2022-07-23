@@ -11,7 +11,7 @@
     {% for trka in trki %}
         <!-- <h1>{{ trka.drzava }}</h1> -->
         {% if trka.status == "Confirmed" or trka.status == "Complete" %}
-        <a href="{% url 'app-traka-info' traka_id=trka.race_id %}" class="trka {{ trka.status }}">
+        <a href="{% url 'formula_app:app-traka-info' traka_id=trka.race_id %}" class="trka {{ trka.status }}">
 
             <!-- TODO namesto znaminja so trakcBackgrounds -->
             <img src="{% static 'formula_app/imgs/flags/spain.png' %}">

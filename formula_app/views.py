@@ -3,9 +3,17 @@ import json
 # for thread in threading.enumerate(): 
         #     print(thread.name)
 from threading import Thread
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.contrib.auth import login
+from django.contrib import messages
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import AuthenticationForm
 from django.db.models import Q
+from requests import request
+from formula_app.forms import NewUserForm
 from formula_app.scrapers.standings import get_driver_standings, get_constructor_standings, get_races
 from formula_app.scrapers import telma, sportskimk, sporteden
 from .models import Tim, Vest, Vozac, Trka
@@ -54,9 +62,6 @@ def novosti(request):
 
 
 def plasman(request):
-    # get_constructor_standings()
-    # get_driver_standings()
-    # get_races()
     data = {}
     with open("formula_app/data/trki/trki.json", 'r') as read_file:
         data = json.load(read_file)
@@ -170,6 +175,7 @@ def otvorena_novost(request, novost_id):
     return render(request, 'formula_app/otvorena-vest.html', context)
 
 
+@login_required()
 def gledaj(request):
     return render(request, 'formula_app/strimanje.html')
 
@@ -201,3 +207,41 @@ def manage(request):
         thread_sporteden_vesti.start()
         thread_sporteden_vesti.join()
     return render(request, 'formula_app/manage.html')
+
+
+
+def register_request(request):
+	if request.method == "POST":
+		form = NewUserForm(request.POST)
+		if form.is_valid():
+			user = form.save()
+			login(request, user)
+			messages.success(request, "Registration successful." )
+			return redirect("formula_app:app-welcome")
+		messages.error(request, "Unsuccessful registration. Invalid information.")
+	form = NewUserForm()
+	return render (request=request, template_name="formula_app/register.html", context={"register_form":form})
+
+
+
+def login_request(request):
+	if request.method == "POST":
+		form = AuthenticationForm(request, data=request.POST)
+		if form.is_valid():
+			username = form.cleaned_data.get('username')
+			password = form.cleaned_data.get('password')
+			user = authenticate(username=username, password=password)
+			if user is not None:
+				login(request, user)
+				messages.info(request, f"You are now logged in as {username}.")
+				return redirect("formula_app:app-welcome")
+			else:
+				messages.error(request,"Invalid username or password.")
+		else:
+			messages.error(request,"Invalid username or password.")
+	form = AuthenticationForm()
+	return render(request=request, template_name="formula_app/login.html", context={"login_form":form})
+
+
+def welcome(request):
+    return render(request, 'formula_app/welcome.html')
