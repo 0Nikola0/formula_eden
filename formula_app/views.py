@@ -1,8 +1,6 @@
 import json
-# import threading
-# for thread in threading.enumerate(): 
-        #     print(thread.name)
 from threading import Thread
+import traceback
 from django.shortcuts import render, redirect
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
@@ -39,10 +37,6 @@ def home(request):
 
 
 def novosti(request):
-    # telma.scrape()
-    # sportskimk.scrape()
-    # sporteden.scrape()
-
     data = {}
     with open("formula_app/data/trki/trki.json", 'r') as read_file:
         data = json.load(read_file)
@@ -79,30 +73,7 @@ def plasman(request):
     return render(request, 'formula_app/plasman.html', context)
 
 
-def plasman_OLD(request):
-    vozaci = []
-    with open("formula_app/data/plasman/vozaci-plasman.json", 'r') as read_file:
-        vozaci = json.load(read_file)["results"]
-
-    data = {}
-    with open("formula_app/data/trki/trki.json", 'r') as read_file:
-        data = json.load(read_file)
-    
-    dataJSON = json.dumps(data)
-    
-    context = {
-        "vozaci": vozaci,
-        "data": dataJSON,
-    }
-
-    return render(request, 'formula_app/plasman.html', context)
-
-
 def raspored(request):
-    # trki = []
-    # with open("formula_app/data/trki/trki.json", 'r') as read_file:
-    #     trki = json.load(read_file)["results"]
-    
     data = {}
     with open("formula_app/data/trki/trki.json", 'r') as read_file:
         data = json.load(read_file)
@@ -147,30 +118,17 @@ def traka_info(request, traka_id):
 
 
 def otvorena_novost(request, novost_id):
-    if request.method == "GET":
-        telma_data = []
-        with open("formula_app/data/vesti/telma.json", 'r') as read_file:
-            telma_data = json.load(read_file)
-        
     data = {}
     with open("formula_app/data/trki/trki.json", 'r') as read_file:
         data = json.load(read_file)
     
     dataJSON = json.dumps(data)
     selektirana_vest = Vest.objects.get(custom_id=novost_id)
-    
-    context = {}
-    # for i in telma_data:
-    #     if i['id'] == novost_id:
-    #         context = {
-    #             "novost": i,
-    #             "data": dataJSON,
-    #         }
 
     context = {
-                "novost": selektirana_vest,
-                "data": dataJSON,
-            }
+        "novost": selektirana_vest,
+        "data": dataJSON,
+    }
 
     return render(request, 'formula_app/otvorena-vest.html', context)
 
@@ -182,32 +140,80 @@ def gledaj(request):
 
 @staff_member_required()
 def manage(request):
+    context = dict()
     if(request.GET.get('update_driver_standings')):
-        thread_driver_update = Thread(target=get_driver_standings, name="driv")
-        thread_driver_update.start()
-        thread_driver_update.join()
+        try:
+            status = get_driver_standings()
+            context = {
+                "status_message": status,
+            }
+        except Exception as e:
+            tb = traceback.format_exc()
+            context = {
+                "status_message": tb,
+            }
+        
     if(request.GET.get('update_team_standings')):
-        thread_constructor_update = Thread(target=get_constructor_standings, name="constr")
-        thread_constructor_update.start()
-        thread_constructor_update.join()
-    if(request.GET.get('update_races')):
-        thread_races_update = Thread(target=get_races, name="upd_races")
-        thread_races_update.start()
-        thread_races_update.join()
-    if(request.GET.get('update_telma_vesti')):
-        thread_telma_vesti = Thread(target=telma.scrape(), name="telma_scrape")
-        thread_telma_vesti.start()
-        thread_telma_vesti.join()
-    if(request.GET.get('update_sportskimk_vesti')):
-        thread_sportskimk_vesti = Thread(target=sportskimk.scrape(), name="sportskimk_scrape")
-        thread_sportskimk_vesti.start()
-        thread_sportskimk_vesti.join()
-    if(request.GET.get('update_sporteden_vesti')):
-        thread_sporteden_vesti = Thread(target=sporteden.scrape(), name="sporteden_scrape")
-        thread_sporteden_vesti.start()
-        thread_sporteden_vesti.join()
-    return render(request, 'formula_app/manage.html')
+        try:
+            status = get_constructor_standings()
+            context = {
+                "status_message": status,
+            }
+        except Exception as e:
+            tb = traceback.format_exc()
+            context = {
+                "status_message": tb,
+            }
 
+    if(request.GET.get('update_races')):
+        try:
+            status = get_races()
+            context = {
+                "status_message": status,
+            }
+        except Exception as e:
+            tb = traceback.format_exc()
+            context = {
+                "status_message": tb,
+            }
+
+    if(request.GET.get('update_telma_vesti')):
+        try:
+            status = telma.scrape()
+            context = {
+                "status_message": status,
+            }
+        except Exception as e:
+            tb = traceback.format_exc()
+            context = {
+                "status_message": tb,
+            }
+
+    if(request.GET.get('update_sportskimk_vesti')):
+        try:
+            status = sportskimk.scrape()
+            context = {
+                "status_message": status,
+            }
+        except Exception as e:
+            tb = traceback.format_exc()
+            context = {
+                "status_message": tb,
+            }
+
+    if(request.GET.get('update_sporteden_vesti')):
+        try:
+            status = sporteden.scrape()
+            context = {
+                "status_message": status,
+            }
+        except Exception as e:
+            tb = traceback.format_exc()
+            context = {
+                "status_message": tb,
+            }
+
+    return render(request, 'formula_app/manage.html', context=context)
 
 
 def register_request(request):
@@ -221,7 +227,6 @@ def register_request(request):
 		messages.error(request, "Unsuccessful registration. Invalid information.")
 	form = NewUserForm()
 	return render (request=request, template_name="formula_app/register.html", context={"register_form":form})
-
 
 
 def login_request(request):

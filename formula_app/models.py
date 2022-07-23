@@ -36,8 +36,12 @@ class Vozac(models.Model):
 # =================================================================== #
 
 class Sesija(models.Model):
+    session_id = models.IntegerField(default=0)
     ime = models.CharField(max_length=100)
     datum = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.session_id} {self.ime}"
 
 
 class Trka(models.Model):
