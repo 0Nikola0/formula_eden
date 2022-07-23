@@ -1,0 +1,15 @@
+# Python
+__pycache__
+
+# Data
+.env
+db.sqlite3
+imgs
+data
+
+# Venv
+.venv
+
+# Personal
+notes.md
+temp.py
