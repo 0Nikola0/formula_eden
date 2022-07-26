@@ -21,7 +21,7 @@ class TrkaAdmin(admin.ModelAdmin):
 
     
 class VestAdmin(admin.ModelAdmin):
-    readonly_fields = ('custom_id',)
+    readonly_fields = ('source',)
     list_display = ('naslov', 'skrejp_datum')
 
 
