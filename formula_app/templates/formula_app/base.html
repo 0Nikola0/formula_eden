@@ -18,11 +18,6 @@
 </head>
 
 <body>
-    <!-- Ako ostane vreme za ovoa -->
-    <!-- {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %} -->
-
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="{% url 'formula_app:app-odbrojuvanje' %}" class="nav-but">ОДБРОЈУВАЊЕ</a>
@@ -40,7 +35,7 @@
         </div>
         <!-- <div class="new-menu" onclick="openNav()">&#9776;</div> -->
 
-        <h2 id="traka">Следна трка: {{ sledna_trka.staza }} </h2>
+        <h2 id="traka">Следна трка: {{ sledna_trka.ime }} </h2>
         <div class="menu-icon" style="display: none;" onclick="openNav()">
             <div class="menu-bar"></div>
             <div class="menu-bar"></div>
