@@ -2,18 +2,49 @@
 {% load static %}
 
 {% block links %}
+<link rel="stylesheet" type="text/css" href="{% static 'formula_app/css/novosti.css' %}?{% now 'U' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'formula_app/css/otvorena-vest.css' %}?{% now 'U' %}">
 {% endblock links %}
 
 {% block content %}
-    <!-- TODO najdi kako od poveke JSON files da stavas raznomerno vesti -->
-    <div class="otvorena-novost">
-        <img src="{{ novost.slika }}">
-
-        <h2>{{ novost.naslov }}</h2>
-
-        <p>{{ novost.tekst }}</p>
+    <div class="container">
+        <div class="otvorena-novost">
+            <img src="{{ novost.slika }}">
+    
+            <h2>{{ novost.naslov }}</h2>
+    
+            <p>{{ novost.tekst }}</p>
+        </div>
+    
+        <div class="stranicni-vesti">
+            {% for vest in vesti %}
+                <div class="karticka">
+                    <img src="{{ vest.slika }}">
+                    <h2>{{ vest.naslov }}</h2>
+                    <p>{{ vest.privju }}</p>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 
+    <style>
+        @media all and (max-width: 800px){
+    .container{
+        display: flex;
+        align-items: center;
+        flex-flow: column nowrap;
+        justify-content: center;
+    }
+    .stanicni-vesti{
+        width: 10vw;
+        background-color: green !important;
+    }
+    .karticka{
+        background-color: blue;
+        width: 5vw;
+    }
+
+}
+    </style>
 
 {%  endblock content %}

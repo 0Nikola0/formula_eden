@@ -10,6 +10,7 @@
     <!-- za da ne cuva css u cache vaka na sekoj reload go vcituva odnovo -->
     <link rel="stylesheet" type="text/css" href="{% static 'formula_app/css/base.css' %}?{% now 'U' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'formula_app/css/side-nav.css' %}?{% now 'U' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'formula_app/css/scrollbar.css' %}?{% now 'U' %}">
     <script src="{% static 'formula_app/js/sideNav.js' %}"></script>
     <script src="{% static 'formula_app/js/stickyNavbar.js' %}"></script>
     {% block links %}{% endblock %}
@@ -28,7 +29,7 @@
         <a href="{% url 'formula_app:app-novosti' %}" class="nav-but">НОВОСТИ</a>
         <a href="{% url 'formula_app:app-plasman' %}" class="nav-but">ПЛАСМАН</a>
         <a href="{% url 'formula_app:app-raspored' %}" class="nav-but">РАСПОРЕД</a>
-        <a href="{% url 'formula_app:app-gledaj' %}" class="nav-but">ПРЕНОС ВО ЖИВО</a>
+        <a href="{% url 'chatapp:chatapp-gledaj' %}" class="nav-but">ПРЕНОС ВО ЖИВО</a>
     </div>
 
     <header id="header">
@@ -39,7 +40,7 @@
         </div>
         <!-- <div class="new-menu" onclick="openNav()">&#9776;</div> -->
 
-        <h2 id="traka">Следна трка: </h2>
+        <h2 id="traka">Следна трка: {{ sledna_trka.staza }} </h2>
         <div class="menu-icon" style="display: none;" onclick="openNav()">
             <div class="menu-bar"></div>
             <div class="menu-bar"></div>
@@ -48,48 +49,6 @@
     </header>
 
     {% block content %}{% endblock %}
-
-
-    <!-- TODO Istio kod go ima i kaj ODBROJUVANJE.html, treba so static js file i tuka-->
-    <script>
-        // TODO mozze podobro so indeksi ovaka dvapati ode niz niza za da najde koja trka e (dole e drugio loop)
-        function findClosestPrevDate(arr, target) {
-           let targetDate = new Date(target);
-           let previousDates = arr.filter(e => (targetDate - new Date(e)) < 0)
-           let sortedPreviousDates = previousDates.filter((a, b) => new Date(a) - new Date(b))
-           return sortedPreviousDates[0] || null
-       }
-
-       const deneska = new Date().getTime();
-       var data = JSON.parse("{{data|escapejs}}")['results'];
-       var dateArray = [];
-
-       data.forEach(element => {
-           try{
-               dateArray.push(element['sessions']['7']['date']);
-           }
-           catch (e){
-               // pass
-           }
-       });
-
-       let najbliskaData = findClosestPrevDate(dateArray, deneska);
-       var najblisko = null;
-       
-       // TODO drugio loop, popravi da e se u edno
-       data.forEach(element => {
-           try{
-               if (element['sessions']['7']['date'] == najbliskaData){
-                   najblisko = element;
-               }
-           }
-           catch (e){
-               // pass
-           }
-       });
-       
-       document.getElementById("traka").innerHTML += najblisko['country'] + " - " + najblisko['track']
-   </script>
 
 </body>
 
