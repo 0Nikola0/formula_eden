@@ -1,3 +1,4 @@
+from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.utils import timezone
 import datetime
@@ -72,13 +73,13 @@ class TrkaSesija(models.Model):
 # =================================================================== #
 
 class Vest(models.Model):
-    custom_id = models.CharField(max_length=500)
     naslov = models.CharField(max_length=500)
     privju = models.CharField(max_length=1000)
     url = models.CharField(max_length=500)
     slika = models.CharField(max_length=500)
     tekst = models.TextField()
     skrejp_datum = models.DateTimeField(default=timezone.now)
+    source = models.CharField(max_length=30)
 
     def __str__(self) -> str:
         return self.naslov
