@@ -1,5 +1,6 @@
-from pyexpat import model
 from django.db import models
+from django.utils import timezone
+import datetime
 
 
 class Tim(models.Model):
@@ -25,7 +26,7 @@ class Vozac(models.Model):
     prezime = models.CharField(max_length=30)
     pozicija = models.IntegerField(default=0)
     poeni = models.IntegerField(default=0)
-    tim = models.ForeignKey(Tim, on_delete=models.CASCADE, default=get_placeholder_team)
+    tim = models.ForeignKey(Tim, on_delete=models.SET(get_placeholder_team), default=get_placeholder_team)
     drzava = models.CharField(max_length=80)
     slika = models.CharField(max_length=30, default="nema-slika")
 
@@ -38,7 +39,8 @@ class Vozac(models.Model):
 class Sesija(models.Model):
     session_id = models.IntegerField(default=0)
     ime = models.CharField(max_length=100)
-    datum = models.CharField(max_length=100)
+    trka_ime = models.CharField(max_length=100)
+    datum = models.DateTimeField(default=timezone.now, blank=True, null=True)
 
     def __str__(self):
         return f"{self.session_id} {self.ime}"
@@ -50,11 +52,22 @@ class Trka(models.Model):
     ime = models.CharField(max_length=100)
     drzava = models.CharField(max_length=80)
     staza = models.CharField(max_length=100)
-    pocetok = models.CharField(max_length=20)
-    sesii = models.ManyToManyField(Sesija)
+    pocetok = models.DateField(default=datetime.datetime.now().strftime('%Y-%m-%d'))
+    sesii = models.ManyToManyField(Sesija, through='TrkaSesija', through_fields=('trka', 'sesija'), blank=True)
 
     def __str__(self):
-        return f"{self.ime} {self.status}"
+        return f"{self.ime}"
+
+    def get_closest_race(self, target):
+        return self.filter(dt__gt=target).order_by('pocetok')
+
+
+class TrkaSesija(models.Model):
+    trka = models.ForeignKey(Trka, on_delete=models.CASCADE)
+    sesija = models.ForeignKey(Sesija, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.trka}: {self.sesija}"
 
 # =================================================================== #
 
@@ -62,10 +75,10 @@ class Vest(models.Model):
     custom_id = models.CharField(max_length=500)
     naslov = models.CharField(max_length=500)
     privju = models.CharField(max_length=1000)
-    url = models.CharField(max_length=200)
+    url = models.CharField(max_length=500)
     slika = models.CharField(max_length=500)
     tekst = models.TextField()
-    skrejp_datum = models.DateTimeField(default = None)
+    skrejp_datum = models.DateTimeField(default=timezone.now)
 
     def __str__(self) -> str:
         return self.naslov
