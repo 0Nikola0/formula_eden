@@ -9,7 +9,7 @@
 <div class="vesti" id="vesti">
     {% for vest in veesti %}
         
-    <a class="karticka" href="{% url 'formula_app:app-otvorena-novost' novost_id=vest.custom_id %}">
+    <a class="karticka" href="{% url 'formula_app:app-otvorena-novost' novost_naslov=vest.naslov %}">
         <img src="{{ vest.slika }}">
         <h2>{{ vest.naslov }}</h2>
         <p>{{ vest.privju }}</p>
