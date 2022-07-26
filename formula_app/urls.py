@@ -10,7 +10,7 @@ urlpatterns = [
     path('plasman/', views.plasman, name='app-plasman'),
     path('raspored/', views.raspored, name='app-raspored'),
     path('traka-info?<traka_id>', views.traka_info, name='app-traka-info'),
-    path('gledaj/', views.gledaj, name='app-gledaj'),
+    # path('gledaj/', views.gledaj, name='app-gledaj'),
     # 
     path('manage/', views.manage, name='app-manage'),
     # 
