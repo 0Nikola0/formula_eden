@@ -1,0 +1,82 @@
+{% extends "formula_app/base.html" %}
+{% load static %}
+
+{% block links %}
+<link rel="stylesheet" type="text/css" href="{% static 'formula_app/css/strimanje.css' %}?{% now 'U' %}">
+<script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/4.4.1/jquery.min.js"></script> -->
+{% endblock links %}
+
+{% block content %}
+
+<script>
+    var prevMsgCnt = 0;
+    var msgCnt = 0;
+    $(document).ready(function(){
+        setInterval(function(){
+            // da scroll do dole ako se pojave nova poraka
+            // if (msgCnt > prevMsgCnt){
+            //     $('#chat').scrollTop($('#chat')[0].scrollHeight);
+            //     prevMsgCnt = msgCnt;
+            // }
+
+            $.ajax({
+                type: 'GET',
+                url : "/getMessages/",
+                success: function(response){
+                    $("#chat").empty();
+                    for (let i=0; i < response.messages.length; i++)
+                    {
+                        msgCnt = i;
+                        var temp="<div class='poraka'><div class='isprakjac'>"+ response.users[i] +"</div><div class='tekst'>"+ response.messages[i] +"</div></div>";
+                        $("#chat").append(temp);
+                    }
+                },
+                error: function(response){
+                    // alert('An error occured')
+                }
+            });
+        },1000);
+    })
+    // window.onload = function(){
+    //     $('#chat').scrollTop($('#chat')[0].scrollHeight);
+    // }
+</script>
+
+<div class="content">
+    <iframe src="//f1livegp.me/f1/live.php" name="frame" scrolling="no" frameborder="no" allow="fullscreen"></iframe>
+    
+    <div class="chat-container" id="chat-container">
+        <div class="chat" id="chat">
+    
+        </div>
+        <form id="post-form">
+            {% csrf_token %}
+            <input type="text" name="message" id="message" autocomplete="off"/>
+            <button class="arrow btn btn-primary" type="submit"></button>
+        </form>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).on('submit','#post-form',function(e){
+        e.preventDefault(); 
+        if (document.getElementById('message').value){
+            $.ajax({
+                type:'POST',
+                url:'/send/',
+                data:{
+                    message:$('#message').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function(data){
+                    $('#chat').scrollTop($('#chat')[0].scrollHeight);
+                }
+            });
+            document.getElementById('message').value = ''
+        }
+    });
+  </script>
+
+{% endblock content %}
