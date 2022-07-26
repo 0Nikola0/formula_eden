@@ -73,7 +73,7 @@ header {
     justify-content: center;
     align-items: center;
     width: 60vw;
-    height: 15%;
+    height: 13%;
     border-radius: 30px 0;
     color: white;
     text-decoration: none;
@@ -93,4 +93,12 @@ header {
     -moz-user-select: none;     /* Firefox */
     -ms-user-select: none;      /* IE10+/Edge */
     user-select: none;          /* Standard */
+}
+
+.nav-but:first-child{
+    margin-top: 0;
+}
+
+.nav-but:last-child{
+    margin-bottom: 25px;
 }

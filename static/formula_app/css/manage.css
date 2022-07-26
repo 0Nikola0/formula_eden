@@ -40,3 +40,10 @@
 .vesti-btn:hover{
     background-color: rgb(34, 6, 80);
 }
+
+.blackbox{
+    padding-inline: 40px;
+    padding-block: 15px;
+    color:green;
+    background-color: black;
+}
