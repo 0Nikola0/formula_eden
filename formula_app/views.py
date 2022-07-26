@@ -80,10 +80,10 @@ def traka_info(request, traka_id):
     return render(request, 'formula_app/traka-info.html', context)
 
 
-def otvorena_novost(request, novost_id):
+def otvorena_novost(request, novost_naslov):
     sledna_trka = Trka.objects.filter(pocetok__gte=datetime.datetime.now()).order_by("pocetok").first()
-    selektirana_vest = Vest.objects.get(custom_id=novost_id)
-    vesti = Vest.objects.all()[:2][::-1]
+    selektirana_vest = Vest.objects.all().filter(naslov=novost_naslov).first()
+    vesti = Vest.objects.all().order_by('-skrejp_datum')[:2]
 
     context = {
         "sledna_trka": sledna_trka,
