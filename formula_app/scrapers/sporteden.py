@@ -1,21 +1,20 @@
-from bs4 import BeautifulSoup
 import requests 
-import json
-import time
-from django.utils import timezone
+from bs4 import BeautifulSoup
+from fake_useragent import UserAgent
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 from ..models import Vest
 
-data = []
 
 def scrape() -> list:
-    SITE_URL = "https://sport1.mk/koli-motori-i-trki"
+    data = []
 
-    page = requests.get(f"{SITE_URL}")
+    SITE_URL = "https://sport1.mk/koli-motori-i-trki"
+    ua = UserAgent()
+
+    page = requests.get(f"{SITE_URL}", headers={'User-Agent': ua.chrome})
     soup = BeautifulSoup(page.content, 'html.parser')
     blocks = soup.find_all('div', class_="col-md-4")
-
 
     for blok in blocks:
         try:
@@ -27,7 +26,6 @@ def scrape() -> list:
         except AttributeError:
             continue
         
-
         # ===========================================================
         # od tuka: otvara stranata na vesta 
         # zima ja slikata i celio tekst (ne samo prevjuto)
@@ -43,26 +41,18 @@ def scrape() -> list:
         except AttributeError:
             continue
 
-        # id za posle koa se prefrla so href od eden html u drug
-        tid = str(int(time.time()*1000))
-        v_id = f"s1-{v_naslov}-{tid}"
-        skr_dat = timezone.now()
-
         try:
-            vest = get_object_or_404(Vest, custom_id=v_id, naslov=v_naslov)
+            vest = get_object_or_404(Vest, naslov=v_naslov)
         except Http404:
-            vest = Vest.objects.create(custom_id=v_id, naslov=v_naslov, skrejp_datum=skr_dat)
+            vest = Vest.objects.create(naslov=v_naslov)
             vest.privju = v_privju
             vest.url = v_url
             vest.slika = v_slika_url
             vest.tekst = v_teksto
+            vest.source = "sport1.mk"
+            data.append(vest)
 
         vest.save()            
-        print(vest)
-        
-    
-    # with open('../data/vesti/telma.json', 'w') as fout:
-    #     json.dump(data , fout)
         
     return data
 

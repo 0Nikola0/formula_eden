@@ -1,10 +1,12 @@
 # TODO mos ke e podobro sekoja funkc u poseben file za preglednosr
-import enum
 import json
 import requests
+import datetime
 from dotenv import load_dotenv
 import os
 from ..models import Vozac, Tim, Trka, Sesija
+from django.utils import timezone
+from django.utils.dateparse import parse_date
 
 '''
     Prvite 3 API se 1000 request sekoj mesec
@@ -127,7 +129,8 @@ def get_races():
         t_ime = j['name']
         t_drzava = j['country']
         t_staza = j['track']
-        t_pocetok = j['start_date']
+        y,m,d = [int(i) for i in j['start_date'].split("-")]
+        t_pocetok = datetime.date(y, m, d)
         sesii = list()
 
         for sesija in j['sessions']:
@@ -135,7 +138,8 @@ def get_races():
             s_datum = sesija['date']
             model_sesija = Sesija.objects.get_or_create(session_id=sesija['id'])[0]
             model_sesija.ime = s_ime
-            model_sesija.datum = s_datum
+            model_sesija.trka_ime = t_ime
+            model_sesija.datum = timezone.datetime.fromisoformat(s_datum)
             model_sesija.save()
             sesii.append(model_sesija)
         
@@ -144,7 +148,7 @@ def get_races():
         trka.status = t_status
         trka.pocetok = t_pocetok
         
-        print(trka)
+        # print(trka)
         trka.save()
         
     message += "Successfullly updated\n\n"
