@@ -1,0 +1,114 @@
+:root {
+    --f1-crvena: #FF1801;
+    --f1-temna: #FF3E2B;
+}
+
+.content{
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+@media only screen and (max-width: 800px){
+    .content{
+        flex-direction: column;
+    }
+}
+
+iframe{
+    width: 60vw;
+    height: 80vh;
+    margin: auto;
+    margin-top: 20px;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+}
+
+.chat-container{
+    display: flex;
+    flex-flow: column wrap;
+    margin-top: 20px;
+    padding-bottom: 5px;
+    width: 30vw;
+    height: 80vh;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-top: 20px solid white;
+    /* overscroll-behavior-y: contain; */
+    /* scroll-snap-type: y proximity; */
+}
+
+.chat{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 28vw;
+    height: 68vh;
+    font-size: 15px;
+    overflow-x: hidden;
+    overflow-y: visible;
+    overscroll-behavior-y: contain;
+    scroll-snap-type: y proximity;
+    border-top: 1px ridge;
+    border-bottom: 1px ridge;
+}
+
+.poraka{
+    width: 25vw;
+    padding-block: 10px;
+    border-radius: 10px;
+    color: gray;
+}
+
+.poraka>div:first-child{
+    font-weight: bold;
+    color: var(--f1-crvena);
+    padding-left: 4px;
+}
+
+#message{
+    width: 25vw;
+    height: 5vh;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    margin-block: 2px 5px;
+    border-top: 2px solid var(--f1-crvena);
+    border-bottom: 1px ridge;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+#message:hover{
+    border: none;
+    border-bottom: 3px solid var(--f1-crvena);
+    margin-bottom: 2px;
+    transition: all 200ms ease;
+}
+
+#message:focus{
+    border: 2px solid var(--f1-crvena);
+    transition: all 200ms ease;
+}
+
+.btn{
+    scroll-snap-align: end;
+}
+
+.arrow {
+    position: relative;
+	width: 3vmin;
+	height: 3vmin;
+    margin-left: 8px;
+	background: transparent;
+	border-top: none;
+	border-right: none;
+    border-color: var(--f1-crvena);
+	transition: all 200ms ease;
+    transform: rotate(-135deg);
+}
+
+.arrow:hover {
+    border: none;
+    border-bottom: 3px solid;
+    border-right: 3px solid;
+    border-color: var(--f1-crvena);
+}

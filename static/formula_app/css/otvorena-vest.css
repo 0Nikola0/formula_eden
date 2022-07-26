@@ -1,9 +1,16 @@
-.otvorena-novost{
+.container{
     display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+.otvorena-novost{
+    width: 50vw;
+    /* display: flex; */
     justify-content: center;
     flex-flow: column wrap;
     text-align: justify;
-    margin-inline: 15vw;
+    margin-inline: 10vw 5vw;
     margin-block: 10px;
     font-size: 14px; /* za fallback ako toa dole ne rabote na nekoj browser */
     font-size: max(14px, 1.3vw);
@@ -17,3 +24,21 @@
 .otvorena-novost p{
     margin-block: 10px 40px;
 }
+
+.stanicni-vesti{
+    width: 30vw;
+}
+
+.karticka{
+    font-size: 10px; /* za fallback ako toa dole ne rabote na nekoj browser */
+    font-size: max(10px, 1.14vw);
+    width: 23vw;
+    height: min-content;
+}
+
+.karticka>h2{
+    font-size: 13px; /* za fallback ako toa dole ne rabote na nekoj browser */
+    font-size: max(13px, 1.6vw);
+}
+
+
