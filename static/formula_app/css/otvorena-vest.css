@@ -2,6 +2,7 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
+    padding-bottom: 50px;
 }
 
 .otvorena-novost{
@@ -30,15 +31,30 @@
 }
 
 .karticka{
-    font-size: 10px; /* za fallback ako toa dole ne rabote na nekoj browser */
-    font-size: max(10px, 1.14vw);
     width: 23vw;
     height: min-content;
 }
 
-.karticka>h2{
-    font-size: 13px; /* za fallback ako toa dole ne rabote na nekoj browser */
-    font-size: max(13px, 1.6vw);
+
+@media all and (max-width: 800px){
+    .container{
+        display: flex;
+        align-items: center;
+        flex-flow: column nowrap;
+        justify-content: center;
+    }
+    .otvorena-novost{
+        margin: 0;
+        width: 90vw;
+    }
+    .stranicni-vesti{
+        display: flex;
+        width: 90vw;
+        justify-content: space-around;
+        flex-flow: row wrap;
+    }
+    .karticka{
+        display: inline-block;
+        width: 15vw;
+    }
 }
-
-

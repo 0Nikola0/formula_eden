@@ -20,7 +20,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
-    '192.168.0.104',    # koja e ip na pcto taa ja staes (za da moze od tel da ukl e ovoa) [treba i koa runserver vaka: <py manage.py runserver 192.168.0.104:8000>]
+    '192.168.0.106',    # koja e ip na pcto taa ja staes (za da moze od tel da ukl e ovoa) [treba i koa runserver vaka: <py manage.py runserver 192.168.0.104:8000>]
     '45eb-89-205-53-184.eu.ngrok.io'
 ]
 
@@ -54,7 +54,7 @@ ROOT_URLCONF = 'formula_eden.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,18 +85,18 @@ DATABASES = {
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    # },
 ]
 
 
@@ -120,7 +120,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),                   # ili ovoa bese za debug nz bas
 )
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'uni_form'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

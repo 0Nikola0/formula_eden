@@ -1,17 +1,12 @@
 :root {
     --f1-crvena: #FF1801;
     --f1-temna: #FF3E2B;
+    --chat-bg: #1e1e21;
 }
 
 .content{
     display: flex;
     flex-flow: row nowrap;
-}
-
-@media only screen and (max-width: 800px){
-    .content{
-        flex-direction: column;
-    }
 }
 
 iframe{
@@ -24,14 +19,14 @@ iframe{
 
 .chat-container{
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
     margin-top: 20px;
     padding-bottom: 5px;
     width: 30vw;
     height: 80vh;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
-    background-color: white;
-    border-top: 20px solid white;
+    background-color: var(--chat-bg);
+    border-top: 20px solid var(--chat-bg);
     /* overscroll-behavior-y: contain; */
     /* scroll-snap-type: y proximity; */
 }
@@ -43,13 +38,14 @@ iframe{
     flex-direction: column;
     width: 28vw;
     height: 68vh;
-    font-size: 15px;
+    font-size: 13px; /* za fallback ako toa dole ne rabote na nekoj browser */
+    font-size: max(13px, 1.1vmax);
     overflow-x: hidden;
     overflow-y: visible;
     overscroll-behavior-y: contain;
     scroll-snap-type: y proximity;
-    border-top: 1px ridge;
-    border-bottom: 1px ridge;
+    /* border-top: 1px ridge;
+    border-bottom: 1px ridge; */
 }
 
 .poraka{
@@ -75,6 +71,8 @@ iframe{
     border-top: 2px solid var(--f1-crvena);
     border-bottom: 1px ridge;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    background-color: #58585c;
+    color: white;
 }
 
 #message:hover{
@@ -111,4 +109,29 @@ iframe{
     border-bottom: 3px solid;
     border-right: 3px solid;
     border-color: var(--f1-crvena);
+}
+
+@media all and (max-width: 800px) {
+    .content{
+        flex-direction: column;
+    }
+    iframe{
+        width: 95vw;
+        height: 25vh;
+    }
+    .chat-container{
+        width: 70vw;
+        height: 50vh;
+    }
+    .chat{
+        width: 68vw;
+        height: 38vh;
+    }
+    .poraka{
+        width: 65vw;
+    }
+    #message{
+        width: 58vw;
+        height: 10vmin;
+    }
 }

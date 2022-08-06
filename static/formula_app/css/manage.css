@@ -46,4 +46,5 @@
     padding-block: 15px;
     color:green;
     background-color: black;
+    word-wrap: normal;
 }

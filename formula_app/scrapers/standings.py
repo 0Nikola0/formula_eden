@@ -131,6 +131,8 @@ def get_races():
         t_staza = j['track']
         y,m,d = [int(i) for i in j['start_date'].split("-")]
         t_pocetok = datetime.date(y, m, d)
+        y,m,d = [int(i) for i in j['end_date'].split("-")]
+        t_kraj = datetime.date(y, m, d)
         sesii = list()
 
         for sesija in j['sessions']:
@@ -147,6 +149,9 @@ def get_races():
         trka.sesii.set(sesii)
         trka.status = t_status
         trka.pocetok = t_pocetok
+        trka.kraj = t_kraj
+        trka.staza_slika = f'formula_app/imgs/tracks/{t_ime.replace(" ","-")}.png'
+        trka.pozadina_slika = f'formula_app/imgs/track-Backgrounds/{t_ime.replace(" ","-")}.jpg'
         
         # print(trka)
         trka.save()

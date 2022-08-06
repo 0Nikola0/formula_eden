@@ -1,4 +1,4 @@
-{% extends "formula_app/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block links %}
@@ -18,33 +18,13 @@
     
         <div class="stranicni-vesti">
             {% for vest in vesti %}
-                <div class="karticka">
+                <a class="karticka" href="{% url 'formula_app:app-otvorena-novost' novost_naslov=vest.naslov %}">
                     <img src="{{ vest.slika }}">
                     <h2>{{ vest.naslov }}</h2>
                     <p>{{ vest.privju }}</p>
-                </div>
+                </a>
             {% endfor %}
         </div>
     </div>
-
-    <style>
-        @media all and (max-width: 800px){
-    .container{
-        display: flex;
-        align-items: center;
-        flex-flow: column nowrap;
-        justify-content: center;
-    }
-    .stanicni-vesti{
-        width: 10vw;
-        background-color: green !important;
-    }
-    .karticka{
-        background-color: blue;
-        width: 5vw;
-    }
-
-}
-    </style>
 
 {%  endblock content %}

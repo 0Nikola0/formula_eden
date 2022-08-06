@@ -2,11 +2,14 @@
     --f1-crvena: #FF1801;
 }
 
+body{
+    background-color: rgb(41, 46, 53);
+}
+
 .vesti {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    /* height: 550px; */
 }
 
 .karticka {
@@ -21,13 +24,14 @@
     /* max-width: 300px;  */
     /* width: clamp(220px, 50%, 350px); */
     text-decoration: none;
-    color: black;
-    background-color: white;
+    color: white;
+    background-color: #1e1e21;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
     border-radius: 30px 0;
     padding-bottom: 18px;
     font-size: 10px; /* za fallback ako toa dole ne rabote na nekoj browser */
-    font-size: max(10px, 1.2vw);
+    font-size: max(13px, 1.2vmax);
+    /* transition: all 0.5s ease; */
 }
 
 .karticka:hover{
@@ -44,13 +48,23 @@
 .karticka>img {
     width: 100%;
     border-radius: 30px 3px 3px 3px;
+    transition: all 0.5s ease;
+}
+
+.karticka:hover > img{
+    filter: saturate(0);
 }
 
 .karticka>h2{
     text-align: center;
     font-size: 13px; /* za fallback ako toa dole ne rabote na nekoj browser */
     font-size: max(13px, 1.8vw);
+    transition: all 0.5s ease;
 }
+
+/* .karticka:hover > h2{
+    color: var(--f1-crvena);
+} */
 
 .karticka>h2, .karticka p{
     padding-inline: 10px;

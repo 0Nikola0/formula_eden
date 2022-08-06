@@ -31,9 +31,9 @@ def prevedi(value):
         "Confirmed": "Потврдено",
         "Canceled": "Откажано",
         # ========================= #
-        "Practice 1": "Вежбање 1",
-        "Practice 2": "Вежбање 2",
-        "Practice 3": "Вежбање 3",
+        "Practice 1": "Тренинг 1",
+        "Practice 2": "Тренинг 2",
+        "Practice 3": "Тренинг 3",
         "Qualifying 1": "Квалификации дел 1",
         "Qualifying 2": "Квалификации дел 2",
         "Qualifying 3": "Квалификации дел 3",
@@ -42,11 +42,18 @@ def prevedi(value):
         "FastestLap": "Крај на трка",
         # ========================== #
         "Monday": "Понеделник",
+        "Mon": "Пон",
         "Tuesday": "Вторник",
+        "Tue": "Вто",
         "Wednesday": "Среда",
+        "Wed": "Сре",
         "Thursday": "Четвтрок",
+        "Thu": "Чет",
         "Friday": "Петок",
+        "Fri": "Пет",
         "Saturday": "Сабота",
+        "Sat": "Саб",
         "Sunday": "Недела",
+        "Sun": "Нед",
         # ========================== #
     }.get(value)

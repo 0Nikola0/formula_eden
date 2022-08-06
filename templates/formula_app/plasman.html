@@ -1,4 +1,4 @@
-{% extends "formula_app/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% load formatter %}
 
@@ -30,12 +30,11 @@
                 <!-- <img src="{% static 'formula_app/imgs/flags/{{ vozac.nationality }}.png' %}"  -->
                 
             </div>
-            <!-- TODO ne treba vaka racno path da e treba so %static% -->
-            <div class="slika-vozac" id="nema-hover">
-                <span class="poeni"><b>{{ vozac.poeni }}</b> pts</span>
-            </div>
-
-            <div class="slika-vozac" id="samo-hover" style='background-image: url("{% static vozac.slika %}")'>
+            <div class="slika-vozac" style="
+                                    background-color: var(--{{vozac.tim.ime.lower|zameni_prazno_mesto}}-color);
+                                    background-image: url('{% static vozac.slika %}');
+                                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+                                    ">
                 <span class="poeni"><b>{{ vozac.poeni }}</b> pts</span>
             </div>
         </div>
@@ -43,25 +42,20 @@
         {% endfor %}
     </div>
     <h2 id="timovi">Тимови</h2>
-    <div id="timovi" class="plasman-vozaci">
+    <div class="plasman-vozaci">
 
         {% for tim in timovi %}
 
-        <div class="p-vozac">
+        <div class="p-vozac" style="overflow-y: hidden;">
             <h2>{{ tim.pozicija }}</h2>
             <div class="drugio-font vozac-ime-blok boja-{{ tim.ime|zameni_prazno_mesto }}" >
-                <div class="text-boja-{{ tim.ime.split|join:'-' }}">{{ tim.ime }}</div>
-                
+                <div class="text-boja-{{ tim.ime.split|join:'-' }}" style="margin-top: 13%; margin-bottom: 13%">{{ tim.ime }}</div>
             </div>
-            <!-- TODO ne treba vaka racno path da e treba so %static% -->
-            <div class="slika-vozac" id="nema-hover">
+            <img class="tim-slika" src="https://www.formula1.com/content/dam/fom-website/teams/2022/{{tim.ime.lower|zameni_prazno_mesto}}.png" alt="{{tim.ime}}">
+            <div class="slika-vozac">
                 <span class="poeni"><b>{{ tim.poeni }}</b> pts</span>
             </div>
-
-            <div class="slika-vozac" id="samo-hover" style='background-image: url("{% static vozac.slika %}")'>
-                <span class="poeni"><b>{{ tim.poeni }}</b> pts</span>
             </div>
-        </div>
 
         {% endfor %}
     </div>

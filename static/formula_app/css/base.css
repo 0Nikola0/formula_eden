@@ -7,27 +7,44 @@
     --f1-crvena: #FF1801;
     --f1-temna: #FF3E2B;
     --off-white: #FAF9F6;
+    font-family: sans-serif;
+    --light-gray: #1e1e21;
 }
 
-body {
-    background-color: var(--off-white);
+html{
+    scroll-behavior: smooth;
+}
+
+#body {
+    background-color: #161618;
+    color: white;
     height: 100vh;
     min-width: 350px;
-    font-family: sans-serif;
 }
 
-header {
+#header {
     position: -webkit-sticky;
-    background-color: white;
+    background-color: var(--light-gray);
+    /* color: var(--f1-crvena); */
     display: flex;
-    justify-content: flex-end;
+    /* justify-content: ; */
     align-items: center;
     padding: 5px;
-    border-bottom: solid 2px;
+    border-bottom: solid 2px var(--f1-crvena);
     text-align: center;
     font-weight: bold;
     font-size: 15px; /* za fallback ako toa dole ne rabote na nekoj browser */
     font-size: max(15px, 1.4vw);
+    line-height: normal;
+    z-index: 1;
+}
+
+#traka{
+    margin: auto;
+    line-height: inherit;
+    font-size: 15px; /* za fallback ako toa dole ne rabote na nekoj browser */
+    font-size: clamp(15px, 3.1vmax, 38px);
+    font-weight: inherit;
 }
 
 .sticky {

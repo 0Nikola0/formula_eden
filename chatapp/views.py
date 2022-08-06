@@ -1,27 +1,33 @@
-from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
-from django.core import serializers
+import datetime
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from requests import request
+from django.views.decorators.http import require_http_methods
 from .models import Poraka
+from formula_app.models import Trka
 
 
 @login_required()
+@require_http_methods(["GET"])
 def gledaj(request):
     poraki = Poraka.objects.all()
+    sledna_trka = Trka.objects.filter(pocetok__gte=datetime.datetime.now()).order_by("pocetok").first()
+    context = {
+        "poraki": poraki,
+        "sledna_trka": sledna_trka,
+    }
+    return render(request, 'chatapp/strimanje.html', context=context)
 
-    return render(request, 'chatapp/strimanje.html', context={'poraki': poraki})
 
-
+@require_http_methods(["POST"])
 def send(request):
     message = request.POST['message']
-    # username = request.POST['username']
-    # room_id = request.POST['room_id']
-
     new_message = Poraka.objects.create(message=message, sender=request.user)
     new_message.save()
     return HttpResponse('Message sent successfully')
 
+
+@require_http_methods(["GET"])
 def getMessages(request):
     poraki = Poraka.objects.all()
     messages = [i.get_text() for i in poraki]
@@ -34,6 +40,9 @@ def getMessages(request):
 
 @login_required()
 def gledajSTARO(request):
+    """
+    Treba refresh za da pokazuva porakite, toa gore e podobro so AJAX so e
+    """
     if request.method == 'POST':
         nova_poraka = Poraka.objects.create(sender=request.user, message=request.POST['message'])
         nova_poraka.save()

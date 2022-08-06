@@ -1,4 +1,4 @@
-{% extends "formula_app/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block links %}
@@ -24,12 +24,15 @@
                 type: 'GET',
                 url : "/getMessages/",
                 success: function(response){
-                    $("#chat").empty();
-                    for (let i=0; i < response.messages.length; i++)
-                    {
-                        msgCnt = i;
-                        var temp="<div class='poraka'><div class='isprakjac'>"+ response.users[i] +"</div><div class='tekst'>"+ response.messages[i] +"</div></div>";
-                        $("#chat").append(temp);
+                    if (msgCnt < response.messages.length){
+                        msgCnt = response.messages.length;
+                        $("#chat").empty();
+                        for (let i=0; i < msgCnt; i++)
+                        {
+                            var temp="<div class='poraka'><div class='isprakjac'>"+ response.users[i] +"</div><div class='tekst'>"+ response.messages[i] +"</div></div>";
+                            $("#chat").append(temp);
+                        }
+                        setTimeout(function(){$('#chat').scrollTop($('#chat')[0].scrollHeight)}, 500)
                     }
                 },
                 error: function(response){
@@ -38,9 +41,7 @@
             });
         },1000);
     })
-    // window.onload = function(){
-    //     $('#chat').scrollTop($('#chat')[0].scrollHeight);
-    // }
+
 </script>
 
 <div class="content">
@@ -71,7 +72,7 @@
                     csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
                 },
                 success: function(data){
-                    $('#chat').scrollTop($('#chat')[0].scrollHeight);
+                    setTimeout(function(){$('#chat').scrollTop($('#chat')[0].scrollHeight)}, 500)
                 }
             });
             document.getElementById('message').value = ''

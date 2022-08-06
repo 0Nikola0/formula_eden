@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}       
+
+{% block links %}
+	<link type="text/css" rel="stylesheet" href="{% static 'formula_app/bootstrap/css/materialize.min.css' %}"  media="screen,projection"/>
+	<link type="text/css" rel="stylesheet" href="{% static 'formula_app/bootstrap/css/style.css' %}"  media="screen,projection"/>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="{% static 'formula_app/bootstrap/js/materialize.min.js' %}"></script>
+{% endblock links %}
+
+
+{% block content %} 
+<!--Register--> 
+<div class="container">
+	<h1>Register</h1>
+	<form class="form-group" method="POST" >
+		{% csrf_token %}
+		<div class="row">
+			<div class="input-field col s12">
+				{{ form.username }}
+				<label for="id_username" data-error="Username already taken">Username</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+				{{ form.password1 }}
+				<label for="id_password">Password</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+				{{ form.password2 }}
+				<label for="id_password2">Repeat Password</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12">
+			<div class="right">
+				<button class="btn blue waves-effect waves-light pull-s12">Register</button>
+			</div>
+			</div>
+		</div>
+	</form>
+	{% if request.GET.next %}
+		<input type="hidden" name="next" value="{{ request.GET.next }}">
+		<p class="text-center">If you already have an account, <a href="/login/?next={{ request.GET.next }}">login</a> instead.</p>
+	{% else %}
+		<p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
+	{% endif %}
+</div>
+
+{% endblock %}

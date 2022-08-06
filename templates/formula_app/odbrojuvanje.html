@@ -14,6 +14,7 @@
 
 <body>
     <div class="countdown" id="countdown" data-value="{{ sledna_sesija.datum|date:'Y-m-d H:i:s' }}">
+        <img id="staza-img" src="{% static sledna_trka.staza_slika %}">
         <h1 id="cntd"></h1>
         <h4>денови часови минути секунди</h4>
         <br>

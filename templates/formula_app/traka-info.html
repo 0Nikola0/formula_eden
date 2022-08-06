@@ -1,5 +1,6 @@
-{% extends "formula_app/base.html" %}
+{% extends "base.html" %}
 {% load static %}
+{% load formatter %}
 
 {% block links %}
 <link rel="stylesheet" type="text/css" href="{% static 'formula_app/css/traka-info.css' %}?{% now 'U' %}">
@@ -7,10 +8,38 @@
 
 {% block content %}
 <div class="content">
-    <!-- TODO slika od stazata da pokazuva tuka (od tie novite PNG ako ne izgledat loso inc SVG)-->
-    <!-- Ako se SVG oti ne gi ima site ke treba nesto za default da se pokazuva -->
-    <!-- <img src="" alt=""> -->
-    <div class="staza-info">
+    <div class="line-info">
+        <h1>Formula One {{ traka.ime }}</h1>
+        <h2> {{traka.drzava }}</h2>
+    </div>
+    <h1><span>Тркачка патека:</span> {{ traka.staza }}</h1>
+    <img class="staza" src="{% static traka.staza_slika %}">
+
+    <div class="info-wrapper">
+        <!-- <div class="tekst-info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam quasi voluptatem quaerat
+            vero dolorem totam. Numquam perferendis quaerat ea odio optio omnis corrupti, cupiditate est ut. Deleniti
+            atque quod sed.</div> -->
+        <div class="sesii-info">
+            {% for sesija in traka.sesii.all|dictsort:"datum" %}
+            <div class="sesija">
+                <span>{{ sesija.ime|prevedi }} </span> <span>{{sesija.datum|date:'H:i' }} {{sesija.datum|date:'D'|prevedi }}</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="gumi-wrapper">
+            <h2>На располагање</h2>
+            <div class="gumi">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/F1_tire_Pirelli_PZero_Red.svg/512px-F1_tire_Pirelli_PZero_Red.svg.png" alt="Red">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/F1_tire_Pirelli_PZero_Yellow.svg/512px-F1_tire_Pirelli_PZero_Yellow.svg.png" alt="Yellow">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/F1_tire_Pirelli_PZero_White.svg/512px-F1_tire_Pirelli_PZero_White.svg.png" alt="White">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/F1_tire_Pirelli_Cinturato_Green.svg/512px-F1_tire_Pirelli_PZero_Green.svg.png" alt="Green">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/F1_tire_Pirelli_Cinturato_Blue.svg/512px-F1_tire_Pirelli_PZero_Blue.svg.png" alt="Blue">
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="staza-info">
         <div class="inf" data-vreme="{{ traka.sesii.all.0.datum }}">
             <p style="font-weight:100; color:gray;">Вежбање 1: </p>
         </div>
@@ -26,7 +55,7 @@
         <div class="inf" data-vreme="{{ traka.sessions.7.date }}">
             <p style="font-weight:100; color:gray;">Трка: </p>
         </div>
-    </div>
+    </div> -->
 </div>
 
 <script>
@@ -39,7 +68,7 @@
         var den = data[0];
         data.shift()
 
-        switch(den){
+        switch (den) {
             case "Monday":
                 den = "Понеделник";
                 break;
@@ -62,7 +91,7 @@
                 den = "Недела";
                 break;
         }
-        
+
         console.log()
 
         element.innerHTML += den + data + "ч";

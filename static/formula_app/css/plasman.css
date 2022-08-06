@@ -4,8 +4,8 @@
     --off-white: #FAF9F6;
     --off-gray: rgb(32, 32, 32);
 
-    /* --redbull-color: blue; */
-    --redbull-color: rgb(54, 113, 198);
+    /* --red-bull-racing-color: blue; */
+    --red-bull-racing-color: rgb(54, 113, 198);
     /* --ferrari-color: red; */
     --ferrari-color: rgb(249, 21, 54);
     /* --mercedes-color: rgb(52, 238, 222); */
@@ -16,14 +16,14 @@
     --alpine-color: rgb(34, 147, 209);
     /* --aston-martin-color: green; */
     --aston-martin-color: rgb(53, 140, 117);
-    /* --alpha-tauri-color: rgb(87, 87, 87); */
-    --alpha-tauri-color: rgb(94, 143, 170);
+    /* --alphatauri-color: rgb(87, 87, 87); */
+    --alphatauri-color: rgb(94, 143, 170);
     /* --alfa-romeo-color: rgb(170, 0, 0); */
     --alfa-romeo-color: rgb(201, 45, 75);
     /* --williams-color: rgb(54, 110, 184); */
     --williams-color: rgb(55, 190, 221);
-    /* --haas-color: rgb(163, 163, 163); */
-    --haas-color: rgb(182, 186, 189);
+    /* ---haas-f1-team-color: rgb(163, 163, 163); */
+    --haas-f1-team-color: rgb(182, 186, 189);
 }
 
 /* FONTOVI */
@@ -52,7 +52,7 @@
     display: flex;
     flex-flow: column;
     font-size: 13px; /* za fallback ako toa dole ne rabote na nekoj browser */
-    font-size: max(13px, 1.2vmax);
+    font-size: max(13px, 1.5vmax);
     margin: 0;
 }
 
@@ -65,110 +65,107 @@
     padding: 5px;
     margin-block: 10px;
     width: clamp(350px, 90%, 900px);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 1px 0 rgba(255, 255, 255, 0.1), 0 2px 3px 0 rgba(255, 255, 255, 0.1);
     border-radius: 0px 8px 8px 0px;
-    background-color: white;
-    transition: 0.3s;
+    background-color: #1e1e21;
+    transition: all 0.3s ease;
+    overflow: visible;
 }
 
 .p-vozac:hover{
-    font-size: 1.5em;
-    height: 150px;
-    /* color: white; */
-    /* background-color: #5d5b58; */
-    /* background-color: var(--off-gray); */
+    transform: scale(1.1);
+}
+
+.p-vozac:hover .zname{
+    width: max(10%, 30px);
 }
 
 .slika-vozac{
-    margin-right: 25px;
-    width: 80px;
-    background: none;
-    transition: 0.5s;
-}
-
-.p-vozac:hover #nema-hover{
-    display: none;
-}
-
-#nema-hover{
-    display: flex;
-}
-
-#samo-hover{
-    display: none;
-    background-repeat: no-repeat;
-    background-size: contain;
-}
-
-.p-vozac:hover #samo-hover{
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    /*  */
     margin-block: 1px;
-    width: max(130px, 20%);
-    transition: 1s;
+    margin-right: 25px;
+    width: max(78px, 17vw);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 14px;
+    transition: all 0.2s ease;
 }
 
-.p-vozac:hover .poeni{
-    margin: 0;
-    margin-bottom: 2px;
+.slika-vozac:hover{
+    transform: scale(1.1);
 }
 
 .p-vozac>h2{
-    font-size: 20px; /* za fallback ako toa dole ne rabote na nekoj browser */
-    font-size: max(20px, 1.7vmax);
+    font-size: 13px; /* za fallback ako toa dole ne rabote na nekoj browser */
+    font-size: max(13px, 2vmax);
     margin-right: 0;
     margin-left: max(10px, 3%);
-    /* padding-right: max(10px, 3%); */
-    /* border-right: 5px solid red; */
 }
 
 .vozac-ime-blok{
     margin-inline: 20px;
     margin-block: 5px;
     padding-left: max(10px, 3%);
-    border-left: 5px solid red;
+    border-left: 5px solid;
 }
 
 .vozac-ime-blok>div:first-child{
     margin-bottom: 5px;
 }
 
-.vozac-ime-blok>div:nth-child(2){
-    color: black;
-}
-
 .zname{
-    display: none;
-    width: max(10%, 30px);
+    display: block;
+    width: 0;
     border-radius: 4px;
     margin: 15px 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
-.p-vozac:hover .zname{
-    display: block;
+.zname:hover{
+    transform: scale(1.3);
 }
 
 .poeni{
     min-width: 75px;
-    margin-right: 3%;
+    margin-bottom: 2px;
     font-size: 20px; /* za fallback ako toa dole ne rabote na nekoj browser */
-    font-size: max(14px, 1.2vmax);
-    z-index: 1;
+    font-size: max(11px, 1.3vmax);
+    text-align: center;
     max-height: 30px;
     padding: 5px 8px;
     border-radius: 15px;
     color: black;
     background-color: rgb(233, 233, 233);
+    transition: all 0.3s ease;
 }
 
+.slika-vozac:hover .poeni{
+    /* width: 0px; */
+    height: 0px;
+    font-size: 0px;
+    padding: 0px;
+}
+
+.tim-slika{
+    float: inline-end;
+    width: 25%;
+    transition: all 0.3s ease;
+}
+
+.tim-slika:hover{
+    transform: scale(1.2);
+    -webkit-filter: drop-shadow(0px 0px 7px rgba(0, 0, 0, 0.65));
+    filter: drop-shadow(0px 0px 7px rgba(0, 0, 0, 0.65));
+}
 
 /* boi po timovi */
 
 .boja-Red-Bull-Racing{
-    border-color: var(--redbull-color);
+    border-color: var(--red-bull-racing-color);
 }
 
 .boja-Ferrari{
@@ -192,7 +189,7 @@
 }
 
 .boja-AlphaTauri{
-    border-color: var(--alpha-tauri-color);
+    border-color: var(--alphatauri-color);
 }
 
 .boja-Alfa-Romeo{
@@ -204,52 +201,56 @@
 }
 
 .boja-Haas-F1-Team{
-    border-color: var(--haas-color);
+    border-color: var(--haas-f1-team-color);
 }
 
 
 
-.p-vozac:hover .text-boja-Red-Bull-Racing{
-    color: var(--redbull-color);
+.text-boja-Red-Bull-Racing{
+    color: var(--red-bull-racing-color);
 }
 
-.p-vozac:hover .text-boja-Ferrari{
+.text-boja-Ferrari{
     color: var(--ferrari-color);
 }
 
-.p-vozac:hover .text-boja-Mercedes{
+.text-boja-Mercedes{
     color: var(--mercedes-color);
 }
 
-.p-vozac:hover .text-boja-McLaren{
+.text-boja-McLaren{
     color: var(--mclaren-color);
 }
 
-.p-vozac:hover .text-boja-Alpine{
+.text-boja-Alpine{
     color: var(--alpine-color);
 }
 
-.p-vozac:hover .text-boja-Aston-Martin{
+.text-boja-Aston-Martin{
     color: var(--aston-martin-color);
 }
 
-.p-vozac:hover .text-boja-AlphaTauri{
-    color: var(--alpha-tauri-color);
+.text-boja-AlphaTauri{
+    color: var(--alphatauri-color);
 }
 
-.p-vozac:hover .text-boja-Alfa-Romeo{
+.text-boja-Alfa-Romeo{
     color: var(--alfa-romeo-color);
 }
 
-.p-vozac:hover .text-boja-Williams{
+.text-boja-Williams{
     color: var(--williams-color);
 }
 
-.p-vozac:hover .text-boja-Haas-F1-Team{
-    color: var(--haas-color);
+.text-boja-Haas-F1-Team{
+    color: var(--haas-f1-team-color);
 }
 
 
-
+@media screen and (max-width: 400px) {
+    .slika-vozac{
+        background-size: cover;
+    }
+}
 
 
