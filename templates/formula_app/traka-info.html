@@ -3,12 +3,12 @@
 {% load formatter %}
 
 {% block links %}
-<link rel="stylesheet" type="text/css" href="{% static 'formula_app/css/traka-info.css' %}?{% now 'U' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'formula_app/css/traka-info.css' %}">
 {% endblock links %}
 
 {% block content %}
 <div class="content">
-    <div class="line-info">
+    <div class="line-info" id="line-info">
         <h1>Formula One {{ traka.ime }}</h1>
         <h2> {{traka.drzava }}</h2>
     </div>
@@ -38,63 +38,28 @@
             </div>
         </div>
     </div>
-
-    <!-- <div class="staza-info">
-        <div class="inf" data-vreme="{{ traka.sesii.all.0.datum }}">
-            <p style="font-weight:100; color:gray;">Вежбање 1: </p>
-        </div>
-        <div class="inf" data-vreme="{{ traka.sessions.1.date }}">
-            <p style="font-weight:100; color:gray;">Вежбање 2: </p>
-        </div>
-        <div class="inf" data-vreme="{{ traka.sessions.2.date }}">
-            <p style="font-weight:100; color:gray;">Вежбање 3: </p>
-        </div>
-        <div class="inf" data-vreme="{{ traka.sessions.3.date }}">
-            <p style="font-weight:100; color:gray;">Квалификации: </p>
-        </div>
-        <div class="inf" data-vreme="{{ traka.sessions.7.date }}">
-            <p style="font-weight:100; color:gray;">Трка: </p>
-        </div>
-    </div> -->
 </div>
 
 <script>
-    // TODO
-    // staj go u poseben JS file ovoa (ne zabravaj toa "static" ke treba da se linknuva)
-    var options = { weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit', hour: "2-digit", minute: "2-digit" };
-    document.querySelectorAll(".inf").forEach(element => {
-        var vreme = new Date(element.dataset.vreme).toLocaleDateString("en-UK", options).replace("/", ".").replace("/", ".");
-        var data = vreme.split(",");
-        var den = data[0];
-        data.shift()
-
-        switch (den) {
-            case "Monday":
-                den = "Понеделник";
-                break;
-            case "Tuesday":
-                den = "Вторник";
-                break;
-            case "Wednesday":
-                den = "Среда";
-                break;
-            case "Thursday":
-                den = "Четвтрок";
-                break;
-            case "Friday":
-                den = "Петок";
-                break;
-            case "Saturday":
-                den = "Сабота";
-                break;
-            default:
-                den = "Недела";
-                break;
-        }
-
-        console.log()
-
-        element.innerHTML += den + data + "ч";
-    });
+  window.onload = function(){
+    // When the user scrolls the page, execute myFunction
+    window.onscroll = function() {myFunction()};
+    
+    // Get the header
+    const lineInfo = document.getElementById("line-info");
+    
+    // Get the offset position of the navbar
+    var sticky = lineInfo.offsetTop;
+    
+    // Add the sticky class to the lineInfo when you reach its scroll position. Remove "sticky" when you leave the scroll position
+    function myFunction() {
+      if (window.pageYOffset > sticky) {
+        lineInfo.classList.add("sticky");
+      } else {
+        lineInfo.classList.remove("sticky");
+      }
+    }
+    
+}
 </script>
 {% endblock content %}

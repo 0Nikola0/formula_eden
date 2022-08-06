@@ -8,9 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
     <!-- TODO toa %now U samo za debugging-->
     <!-- za da ne cuva css u cache vaka na sekoj reload go vcituva odnovo -->
-    <link rel="stylesheet" type="text/css" href="{% static 'formula_app/css/base.css' %}?{% now 'U' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'formula_app/css/side-nav.css' %}?{% now 'U' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'formula_app/css/scrollbar.css' %}?{% now 'U' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'formula_app/css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'formula_app/css/side-nav.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'formula_app/css/scrollbar.css' %}">
     <script src="{% static 'formula_app/js/sideNav.js' %}"></script>
     <script src="{% static 'formula_app/js/stickyNavbar.js' %}"></script>
     {% block links %}{% endblock %}
