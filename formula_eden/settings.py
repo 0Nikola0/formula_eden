@@ -2,6 +2,8 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 
+from temp2 import STATICFILES_STORAGE
+
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -16,12 +18,11 @@ DJANGO_SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 SECRET_KEY = DJANGO_SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'localhost',
-    '192.168.0.106',    # koja e ip na pcto taa ja staes (za da moze od tel da ukl e ovoa) [treba i koa runserver vaka: <py manage.py runserver 192.168.0.104:8000>]
-    '45eb-89-205-53-184.eu.ngrok.io'
+    '192.168.0.106',
 ]
 
 
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -129,3 +131,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL='/login/'
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
