@@ -1,8 +1,13 @@
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
+
+# HEROKU PRODUCTION: True if the app is run on Heroku
+HEROKU_PRODUCTION = False
+
+
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-
-from temp2 import STATICFILES_STORAGE
 
 load_dotenv()
 
@@ -17,12 +22,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DJANGO_SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 SECRET_KEY = DJANGO_SECRET_KEY
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
 
 ALLOWED_HOSTS = [
     'localhost',
     '192.168.0.106',
+    'formula-eden.herokuapp.com',
 ]
 
 
@@ -132,3 +136,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL='/login/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
+if not HEROKU_PRODUCTION:
+    import django_heroku
+    django_heroku.settings(locals())
