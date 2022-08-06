@@ -4,8 +4,9 @@ __pycache__
 # Data
 .env
 db.sqlite3
-imgs
-data
+imgs/
+data/
+staticfiles/
 
 # Venv
 .venv
