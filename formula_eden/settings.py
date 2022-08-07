@@ -8,6 +8,7 @@ HEROKU_PRODUCTION = False
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+import dj_database_url
 if HEROKU_PRODUCTION:
     import django_heroku
 
@@ -87,6 +88,9 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
