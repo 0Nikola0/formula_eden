@@ -39,8 +39,8 @@ class Vozac(models.Model):
 
 class Sesija(models.Model):
     session_id = models.IntegerField(default=0)
-    ime = models.CharField(max_length=100)
-    trka_ime = models.CharField(max_length=100)
+    ime = models.TextField()
+    trka_ime = models.TextField()
     datum = models.DateTimeField(default=timezone.now, blank=True, null=True)
 
     def __str__(self):
@@ -49,15 +49,15 @@ class Sesija(models.Model):
 
 class Trka(models.Model):
     race_id = models.IntegerField()
-    status = models.CharField(max_length=20)
-    ime = models.CharField(max_length=100)
-    drzava = models.CharField(max_length=80)
-    staza = models.CharField(max_length=100)
+    status = models.TextField()
+    ime = models.TextField()
+    drzava = models.TextField()
+    staza = models.TextField()
     pocetok = models.DateField(default=datetime.datetime.now().strftime('%Y-%m-%d'))
     kraj = models.DateField(default=datetime.datetime.now().strftime('%Y-%m-%d'))
     sesii = models.ManyToManyField(Sesija, through='TrkaSesija', through_fields=('trka', 'sesija'), blank=True)
-    staza_slika = models.CharField(max_length=30, default="nema")
-    pozadina_slika = models.CharField(max_length=30, default="nema")
+    staza_slika = models.TextField(default="nema")
+    pozadina_slika = models.TextField(default="nema")
 
     def __str__(self):
         return f"{self.ime}"
