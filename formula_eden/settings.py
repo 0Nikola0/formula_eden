@@ -2,7 +2,7 @@
 DEBUG = True
 
 # HEROKU PRODUCTION: True if the app is run on Heroku
-HEROKU_PRODUCTION = True
+HEROKU_PRODUCTION = False
 
 
 from pathlib import Path
