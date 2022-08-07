@@ -131,6 +131,7 @@ CRISPY_TEMPLATE_PACK = 'uni_form'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
+DISABLE_STATIC=1
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL='/login/'
@@ -138,5 +139,4 @@ LOGIN_URL='/login/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 import django_heroku
 django_heroku.settings(locals())
-
 # if HEROKU_PRODUCTION:
