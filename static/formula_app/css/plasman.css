@@ -4,30 +4,19 @@
     --off-white: #FAF9F6;
     --off-gray: rgb(32, 32, 32);
 
-    /* --red-bull-racing-color: blue; */
     --red-bull-racing-color: rgb(54, 113, 198);
-    /* --ferrari-color: red; */
     --ferrari-color: rgb(249, 21, 54);
-    /* --mercedes-color: rgb(52, 238, 222); */
     --mercedes-color: rgb(108, 211, 191);
-    /* --mclaren-color: orange; */
     --mclaren-color: rgb(245, 128, 32);
-    /* --alpine-color: rgb(68, 68, 223); */
     --alpine-color: rgb(34, 147, 209);
-    /* --aston-martin-color: green; */
     --aston-martin-color: rgb(53, 140, 117);
-    /* --alphatauri-color: rgb(87, 87, 87); */
     --alphatauri-color: rgb(94, 143, 170);
-    /* --alfa-romeo-color: rgb(170, 0, 0); */
     --alfa-romeo-color: rgb(201, 45, 75);
-    /* --williams-color: rgb(54, 110, 184); */
     --williams-color: rgb(55, 190, 221);
-    /* ---haas-f1-team-color: rgb(163, 163, 163); */
     --haas-f1-team-color: rgb(182, 186, 189);
 }
 
 /* FONTOVI */
-
 @font-face {
     font-family: f1-normal;
     src: url(../fonts/Formula1-Regular.otf);
@@ -38,8 +27,8 @@
     src: url(../fonts/Formula1-Bold.otf);
     font-weight: bold;
 }
-
 /* END FONTOVI */
+
 .plasman-container{
     display: flex;
     flex-flow: column wrap;
@@ -144,7 +133,6 @@
 }
 
 .slika-vozac:hover .poeni{
-    /* width: 0px; */
     height: 0px;
     font-size: 0px;
     padding: 0px;
@@ -163,7 +151,6 @@
 }
 
 /* boi po timovi */
-
 .boja-Red-Bull-Racing{
     border-color: var(--red-bull-racing-color);
 }
@@ -252,5 +239,3 @@
         background-size: cover;
     }
 }
-
-

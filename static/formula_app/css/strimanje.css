@@ -27,8 +27,6 @@ iframe{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
     background-color: var(--chat-bg);
     border-top: 20px solid var(--chat-bg);
-    /* overscroll-behavior-y: contain; */
-    /* scroll-snap-type: y proximity; */
 }
 
 .chat{
@@ -44,8 +42,6 @@ iframe{
     overflow-y: visible;
     overscroll-behavior-y: contain;
     scroll-snap-type: y proximity;
-    /* border-top: 1px ridge;
-    border-bottom: 1px ridge; */
 }
 
 .poraka{

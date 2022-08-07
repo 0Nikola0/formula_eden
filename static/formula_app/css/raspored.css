@@ -16,11 +16,8 @@
     display: flex;
     flex-flow: column;
     overflow: wrap;
-    /* min-width: 250px; */
     width: max(250px, 30%); 
     margin: 20px;
-    /* padding-block: 12px; */
-    /* padding-inline: 20px; */
     border-radius: 10px 0;
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
