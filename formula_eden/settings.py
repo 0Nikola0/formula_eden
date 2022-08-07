@@ -136,7 +136,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL='/login/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+import django_heroku
+django_heroku.settings(locals())
 
-if HEROKU_PRODUCTION:
-    import django_heroku
-    django_heroku.settings(locals())
+# if HEROKU_PRODUCTION:
