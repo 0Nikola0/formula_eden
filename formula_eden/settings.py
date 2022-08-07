@@ -1,5 +1,5 @@
-DEBUG = True
-HEROKU_PRODUCTION = False
+DEBUG = False
+HEROKU_PRODUCTION = True
 
 
 from pathlib import Path
