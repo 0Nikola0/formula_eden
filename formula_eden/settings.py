@@ -1,13 +1,15 @@
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # HEROKU PRODUCTION: True if the app is run on Heroku
-HEROKU_PRODUCTION = True
+HEROKU_PRODUCTION = False
 
 
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+if HEROKU_PRODUCTION:
+    import django_heroku
 
 load_dotenv()
 
@@ -131,12 +133,11 @@ CRISPY_TEMPLATE_PACK = 'uni_form'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
-DISABLE_STATIC=1
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL='/login/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-import django_heroku
-django_heroku.settings(locals())
-# if HEROKU_PRODUCTION:
+
+if HEROKU_PRODUCTION:
+    django_heroku.settings(locals())
