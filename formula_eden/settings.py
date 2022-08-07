@@ -137,6 +137,6 @@ LOGIN_URL='/login/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
-if not HEROKU_PRODUCTION:
+if HEROKU_PRODUCTION:
     import django_heroku
     django_heroku.settings(locals())
