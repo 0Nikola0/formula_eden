@@ -23,13 +23,13 @@ def get_placeholder_team():
 
 # TODO isto i za ZNAME kako so e za SLIKA
 class Vozac(models.Model):
-    ime = models.CharField(max_length=30)
-    prezime = models.CharField(max_length=30)
+    ime = models.TextField()
+    prezime = models.TextField()
     pozicija = models.IntegerField(default=0)
     poeni = models.IntegerField(default=0)
     tim = models.ForeignKey(Tim, on_delete=models.SET(get_placeholder_team), default=get_placeholder_team)
-    drzava = models.CharField(max_length=80)
-    slika = models.CharField(max_length=30, default="nema-slika")
+    drzava = models.TextField()
+    slika = models.TextField(default="nema-slika")
 
     def __str__(self):
         return f"{self.ime} {self.prezime}"

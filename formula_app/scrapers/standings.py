@@ -38,7 +38,6 @@ def get_driver_standings():
         v_drzava = j['nationality']
 
         vozac = Vozac.objects.get_or_create(ime=v_ime, prezime=v_prezime, drzava=v_drzava)[0]
-        print(v_pozicija)
         vozac.pozicija=v_pozicija
         vozac.poeni=v_poeni
         vozac.tim=v_tim
