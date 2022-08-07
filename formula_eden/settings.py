@@ -1,5 +1,5 @@
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # HEROKU PRODUCTION: True if the app is run on Heroku
 HEROKU_PRODUCTION = False
