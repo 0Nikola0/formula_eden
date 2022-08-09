@@ -1,13 +1,13 @@
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
-# HEROKU PRODUCTION: True if the app is run on Heroku
 HEROKU_PRODUCTION = True
 
 
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+if HEROKU_PRODUCTION:
+    import dj_database_url
+    # import django_heroku
 
 load_dotenv()
 
@@ -25,13 +25,11 @@ SECRET_KEY = DJANGO_SECRET_KEY
 
 ALLOWED_HOSTS = [
     'localhost',
-    '192.168.0.106',
     'formula-eden.herokuapp.com',
 ]
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'formula_app.apps.FormulaAppConfig',
     'chatapp.apps.ChatappConfig',
@@ -45,8 +43,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -78,7 +76,6 @@ WSGI_APPLICATION = 'formula_eden.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -86,10 +83,13 @@ DATABASES = {
     }
 }
 
+if HEROKU_PRODUCTION:
+    db_from_env = dj_database_url.config(conn_max_age=600)
+    DATABASES['default'].update(db_from_env)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     # {
     #     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -130,13 +130,11 @@ CRISPY_TEMPLATE_PACK = 'uni_form'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL='/login/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
-if not HEROKU_PRODUCTION:
-    import django_heroku
-    django_heroku.settings(locals())
+# if HEROKU_PRODUCTION:
+#     django_heroku.settings(locals())

@@ -25,9 +25,7 @@ html{
 #header {
     position: -webkit-sticky;
     background-color: var(--light-gray);
-    /* color: var(--f1-crvena); */
     display: flex;
-    /* justify-content: ; */
     align-items: center;
     padding: 5px;
     border-bottom: solid 2px var(--f1-crvena);
@@ -65,7 +63,6 @@ html{
 
 /* hamburger menu START */
 .menu-icon{
-    /* z-index: 1; */ /*ako hamburger menu e i za open i za close */
     cursor: pointer;
     width: clamp(35px, 3.5vw, 80px);
     height: 34px;

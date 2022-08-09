@@ -32,12 +32,13 @@ def get_driver_standings():
     #     json.dump(data , fout)
     for i, j in enumerate(data):
         v_ime, v_prezime = j['driver_name'].split(" ")
+        v_pozicija = int(j['position'] )
         v_poeni = int(j['points'])
         v_tim = Tim.objects.get(ime=j['team_name'])
         v_drzava = j['nationality']
 
         vozac = Vozac.objects.get_or_create(ime=v_ime, prezime=v_prezime, drzava=v_drzava)[0]
-        vozac.pozicija=j['position'] 
+        vozac.pozicija=v_pozicija
         vozac.poeni=v_poeni
         vozac.tim=v_tim
         vozac.slika = f"formula_app/imgs/drivers/{v_prezime}.png"

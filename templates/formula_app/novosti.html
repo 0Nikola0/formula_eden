@@ -10,7 +10,9 @@
     {% for vest in veesti %}
 
     <a class="karticka" href="{% url 'formula_app:app-otvorena-novost' novost_naslov=vest.naslov %}">
-        <img src="{{ vest.slika }}">
+        <div class="slika-container">
+            <img src="{{ vest.slika }}">
+        </div>
         <h2>{{ vest.naslov }}</h2>
         <p>{{ vest.privju }}</p>
     </a>
