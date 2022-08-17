@@ -1,14 +1,23 @@
-*{
+:root{
+    --f1-crvena: #FF1801;
+}
+
+* {
     margin: auto;
     /* TODO treba so STATIC ovoa nekako ne e dobro vaka */
     --bgFile: url("../imgs/odbrojuvanjeBackground.jpg");
+    /* da ne moze da selektira teksto (na mobile ne izgleda dobro inace) */
+    -webkit-user-select: none;  /* Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* IE10+/Edge */
+    user-select: none;          /* Standard */
 }
 
-html{
+html {
     height: 100%;
 }
 
-body{
+body {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,33 +31,112 @@ body{
     color: white;
 }
 
-.countdown{
+.countdown {
     display: flex;
     flex-flow: column wrap;
     align-items: center;
     font-weight: bold;
     text-align: center;
-    font-size: 18px; /* za fallback ako toa dole ne rabote na nekoj browser */
+    font-size: 18px;
+    /* za fallback ako toa dole ne rabote na nekoj browser */
     font-size: max(18px, (7px + 1.2vw));
 }
 
-#staza-img{
+#staza-img {
     width: 40vmin;
+    transition: all 0.35s ease;
 }
 
-.countdown>h1{
-    display:inline-block;
+#staza-img:hover{
+    transform: scale(1.2);
+    -webkit-filter: drop-shadow(0px 0px 7px rgba(255, 255, 255, 0.2));
+    filter: drop-shadow(0px 0px 7px rgba(255, 255, 255, 0.2));
 }
 
-.strelka{
+.countdown>h1 {
+    display: inline-block;
+}
+
+.strelka {
     display: flex;
     position: absolute;
     bottom: 10px;
     justify-content: center;
 }
 
-.strelka>img{
-    /* position: absolute; */
+.strelka>img {
     width: clamp(20px, 10%, 50px);
-    
+    transition: all 0.35s ease;
+}
+
+.strelka>img:hover{
+    transform: scale(1.2);
+    -webkit-filter: drop-shadow(0px 0px 7px rgba(255, 255, 255, 0.2));
+    filter: drop-shadow(0px 0px 7px rgba(255, 255, 255, 0.2));
+}
+
+/* DROPDOWN MENU */
+/* Kopceto */
+.dropbtn {
+    padding-inline: 20px;
+    padding-block: 15px;
+    font-size: 15px; /* za fallback ako toa dole ne rabote na nekoj browser */
+    font-size: max(15px, 8px + 1.1vmax);
+    font-weight: bold;
+    border: none;
+    border-radius: 10px 0;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    color: white;
+    background-color: var(--f1-crvena);
+    transition: all 0.25s ease;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: white;
+    color: var(--f1-crvena);
+}
+
+/* container na se so se kopceto */
+.dropdown {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+/* na hover so se pokazuva */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    width: max-content;
+    z-index: 1;
+}
+
+/* na hover da pokaze toa gore */
+.dropdown:hover .dropdown-content {
+    display: block;
+    margin-top: 52px;
+    overflow-y: scroll;
+    height: 25vh;
+    background-color: rgba(0, 0, 0, 0.85);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* sesiite */
+.dropdown-content h4 {
+    display: block;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content h4:hover {
+    background-color: white;
+    color: var(--f1-crvena);
+}
+
+.dropdown:hover h4{
+    font-size: max(18px, 1.8vmax);
 }

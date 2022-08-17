@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"> <!-- toa %now U samo za debugging-->
     <link rel="stylesheet" type="text/css" href="{% static 'formula_app/css/base.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'formula_app/css/odbrojuvanje.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'formula_app/css/scrollbar.css' %}">
 </head>
 
 <body>
@@ -18,7 +19,14 @@
         <h1 id="cntd"></h1>
         <h4>денови часови минути секунди</h4>
         <br>
-        <h3>{{ sledna_sesija.ime|prevedi }}</h3>
+        <div class="dropdown">
+            <button class="dropbtn" id="dropButton">{{ sledna_sesija.ime|prevedi }}</button>
+            <div class="dropdown-content">
+                {% for sesija in sledna_trka.sesii.all|dictsort:"datum" %}
+                    <h4 id="{{ sesija.session_id }}" onclick="smeniSesija('{{ sesija.session_id }}')" data-value="{{ sesija.datum|date:'Y-m-d H:i:s' }}">{{ sesija.ime|prevedi }}</h4>
+                {% endfor %}
+            </div>
+        </div>
         <br>
         <h2 id="traka">{{ sledna_trka.drzava }} - {{ sledna_trka.staza }}</h2>
     </div>
