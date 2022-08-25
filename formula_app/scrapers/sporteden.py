@@ -1,4 +1,4 @@
-import requests 
+import requests
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 from django.http import Http404
@@ -6,8 +6,8 @@ from django.shortcuts import get_object_or_404
 from ..models import Vest
 
 
-def scrape() -> list:
-    data = []
+def scrape() -> str:
+    message = "Vesti: {\n"
 
     SITE_URL = "https://sport1.mk/koli-motori-i-trki"
     ua = UserAgent()
@@ -21,7 +21,7 @@ def scrape() -> list:
             is_formula1 = blok.find('div', class_="headline").text
             if "ФОРМУЛА" not in is_formula1:
                 continue
-            v_naslov = blok.find('h3', class_='title').text
+            v_naslov = blok.find('h3', class_='title').text.strip()
             v_url = blok.find('h3', class_='title').a['href']
         except AttributeError:
             continue
@@ -50,11 +50,13 @@ def scrape() -> list:
             vest.slika = v_slika_url
             vest.tekst = v_teksto
             vest.source = "sport1.mk"
-            data.append(vest)
+            message += f"\t\"{v_naslov}\",\n"
 
-        vest.save()            
-        
-    return data
+        vest.save()
+
+    message += "}"
+
+    return message
 
 
 if __name__ == '__main__':

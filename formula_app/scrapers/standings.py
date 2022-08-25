@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 import os
 from ..models import Vozac, Tim, Trka, Sesija
 from django.utils import timezone
-from django.utils.dateparse import parse_date
 
 '''
     Prvite 3 API se 1000 request sekoj mesec
@@ -18,18 +17,16 @@ ST_API_KEY = os.getenv("ST_API_KEY")
 MR_API_KEY = os.getenv("MR_API_KEY")
 
 def get_driver_standings():
-    message = "Starting update\n\n"
-    url = "https://formula-1-standings.p.rapidapi.com/standings/drivers"
+    URL = "https://formula-1-standings.p.rapidapi.com/standings/drivers"
+
     headers = {
         "X-RapidAPI-Key": ST_API_KEY,
         "X-RapidAPI-Host": "formula-1-standings.p.rapidapi.com"
     }
-    response = requests.request("GET", url, headers=headers)
-    message += f"Response code: {response.status_code}\n\n"
+
+    response = requests.request("GET", URL, headers=headers)
     data = list(response.json()['results'])
-    message += f"Data: {json.dumps(data, indent=4)}\n\n"
-    # with open('../data/plasman/vozaci-plasman.json', 'w') as fout:
-    #     json.dump(data , fout)
+
     for i, j in enumerate(data):
         v_ime, v_prezime = j['driver_name'].split(" ")
         v_pozicija = int(j['position'] )
@@ -43,27 +40,25 @@ def get_driver_standings():
         vozac.tim=v_tim
         vozac.slika = f"formula_app/imgs/drivers/{v_prezime}.png"
 
-        print(vozac)
         vozac.save()
 
+    message = f"Response code: {response.status_code}\n\n"
+    message += f"Data: {json.dumps(data, indent=4)}\n\n"
     message += "Successfullly updated\n\n"
     
     return message
 
 
 def get_constructor_standings():
-    message = "Starting update\n\n"
-    url = "https://formula-1-standings.p.rapidapi.com/standings/constructors"
+    URL = "https://formula-1-standings.p.rapidapi.com/standings/constructors"
+
     headers = {
         "X-RapidAPI-Key": ST_API_KEY,
         "X-RapidAPI-Host": "formula-1-standings.p.rapidapi.com"
     }
-    response = requests.request("GET", url, headers=headers)
-    message += f"Response code: {response.status_code}\n\n"
+
+    response = requests.request("GET", URL, headers=headers)
     data = list(response.json()['results'])
-    message += f"Data: {json.dumps(data, indent=4)}\n\n"
-    # with open('../data/plasman/timovi-plasman.json', 'w') as fout:
-    #     json.dump(data , fout)
 
     for i, j in enumerate(data):
         t_poeni = int(j['points'])
@@ -76,7 +71,10 @@ def get_constructor_standings():
         print(tim)
         tim.save()
 
+    message = f"Response code: {response.status_code}\n\n"
+    message += f"Data: {json.dumps(data, indent=4)}\n\n"
     message += "Successfullly updated\n\n"
+
     return message
 
 
@@ -111,18 +109,15 @@ def get_races():
         250 request sekoj mesec
         60 requests u minuta
     '''
-    message = "Starting update\n\n"
-    url = "https://f1-live-motorsport-data.p.rapidapi.com/races/2022"
+
+    URL = "https://f1-live-motorsport-data.p.rapidapi.com/races/2022"
     headers = {
 	"X-RapidAPI-Key": MR_API_KEY,
 	"X-RapidAPI-Host": "f1-live-motorsport-data.p.rapidapi.com"
-}
-    response = requests.request("GET", url, headers=headers)
-    message += f"Response code: {response.status_code}\n\n"
+    }
+
+    response = requests.request("GET", URL, headers=headers)
     data = list(response.json()['results'])
-    message += f"Data: {json.dumps(data, indent=4)}\n\n"
-    # with open('../data/trki/trki.json', 'w') as fout:
-    #     json.dump(data, fout)
 
     for i, j in enumerate(data):
         t_id = int(j['race_id'])
@@ -154,10 +149,12 @@ def get_races():
         trka.staza_slika = f'formula_app/imgs/tracks/{t_ime.replace(" ","-")}.png'
         trka.pozadina_slika = f'formula_app/imgs/track-Backgrounds/{t_ime.replace(" ","-")}.jpg'
         
-        # print(trka)
         trka.save()
         
+    message = f"Response code: {response.status_code}\n\n"
+    message += f"Data: {json.dumps(data, indent=4)}\n\n"
     message += "Successfullly updated\n\n"
+    
     return data
 
 

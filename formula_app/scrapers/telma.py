@@ -1,4 +1,4 @@
-import requests 
+import requests
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 from django.http import Http404
@@ -6,8 +6,8 @@ from django.shortcuts import get_object_or_404
 from ..models import Vest
 
 
-def scrape() -> list:
-    data = []
+def scrape() -> str:
+    message = "Vesti: {\n"
     
     SITE_URL = "https://telma.com.mk/kategorija/%D1%81%D0%BF%D0%BE%D1%80%D1%82/%D1%84%D0%BE%D1%80%D0%BC%D1%83%D0%BB%D0%B0-1/"
     ua = UserAgent()
@@ -46,11 +46,12 @@ def scrape() -> list:
             vest.slika = v_slika_url
             vest.tekst = v_teksto
             vest.source = "telma.mk"
-            data.append(vest)
+            message += f"\t\"{v_naslov}\"\n"
 
         vest.save()
     
-    return data
+    message += "}"
+    return message
 
 
 if __name__ == '__main__':
