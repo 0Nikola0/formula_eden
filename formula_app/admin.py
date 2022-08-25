@@ -22,7 +22,7 @@ class TrkaAdmin(admin.ModelAdmin):
     
 class VestAdmin(admin.ModelAdmin):
     readonly_fields = ('source',)
-    list_display = ('naslov', 'skrejp_datum')
+    list_display = ('naslov', 'source', 'skrejp_datum')
 
 
 class TrkaSesijaAdmin(admin.ModelAdmin):
