@@ -6,8 +6,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
-    <!-- TODO toa %now U samo za debugging-->
-    <!-- za da ne cuva css u cache vaka na sekoj reload go vcituva odnovo -->
     <link rel="stylesheet" type="text/css" href="{% static 'formula_app/css/base.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'formula_app/css/side-nav.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'formula_app/css/scrollbar.css' %}">
@@ -33,7 +31,6 @@
             <div class="menu-bar"></div>
             <div class="menu-bar"></div>
         </div>
-        <!-- <div class="new-menu" onclick="openNav()">&#9776;</div> -->
 
         <h2 id="traka">Следна трка: {{ sledna_trka.ime }} </h2>
         <div class="menu-icon" style="display: none;" onclick="openNav()">
