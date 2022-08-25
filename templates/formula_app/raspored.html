@@ -11,7 +11,7 @@
 
     {% for trka in trki %}
         {% if trka.status == "Confirmed" or trka.status == "Complete" %}
-        <a href="{% url 'formula_app:app-traka-info' traka_id=trka.race_id %}" class="trka {{ trka.status }}" 
+        <a href="{% url 'formula_app:app-traka-info' traka_id=trka.race_id %}" class="trka" 
         style="background-image: url({% static trka.pozadina_slika %});">
         <img src="{% static trka.staza_slika %}">
             

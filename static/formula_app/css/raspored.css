@@ -58,15 +58,3 @@
     border-radius: 0 0 10px 0;
     background-color: rgba(0, 0, 0, 0.8);
 }
-
-.Complete{
-    border-top: 3px solid;
-    margin-top: 17px;
-    border-color: var(--off-gray);
-}
-
-.Confirmed{
-    border-top: 3px solid;
-    margin-top: 17px;
-    border-color: var(--zelena);
-}
