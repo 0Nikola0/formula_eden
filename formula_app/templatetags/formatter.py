@@ -2,7 +2,6 @@ from django import template
 
 register = template.Library()
 
-# TODO podobro ke e "%20" -> " " -> "-"
 
 @register.filter
 def zameni_procent_dvaese(value):
@@ -38,6 +37,7 @@ def prevedi(value):
         "Qualifying 2": "Квалификации дел 2",
         "Qualifying 3": "Квалификации дел 3",
         "Grid": "Доделување пол позиција",
+        "Sprint Qualifying": "Спринт квалификување",
         "Race": "Трка",
         "FastestLap": "Подиум прослава",
         # ========================== #
