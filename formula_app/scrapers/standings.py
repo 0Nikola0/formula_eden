@@ -1,4 +1,3 @@
-# TODO mos ke e podobro sekoja funkc u poseben file za preglednosr
 import json
 import requests
 import datetime

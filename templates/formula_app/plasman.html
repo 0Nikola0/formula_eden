@@ -23,11 +23,7 @@
                 </div>
                 <div class="text-boja-{{ vozac.tim.ime.split|join:'-' }}">{{ vozac.tim.ime }}</div>
                 
-                <!-- TODO Ovoa treba so imgs so se u STATIC foldero ne od internet da gi dava -->
                 <img class="zname" src="https://www.countries-ofthe-world.com/flags-normal/flag-of-{{ vozac.drzava|zameni_procent_dvaese|zameni_prazno_mesto }}.png">
-                
-                <!-- ^ ne rabote so static -->
-                <!-- <img src="{% static 'formula_app/imgs/flags/{{ vozac.nationality }}.png' %}"  -->
                 
             </div>
             <div class="slika-vozac" style="

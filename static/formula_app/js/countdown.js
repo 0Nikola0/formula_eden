@@ -63,7 +63,6 @@ var x = setInterval(function () {
 }, 1000);
 
 
-// TODO moze da se optimizira tuka ovoa so dropdown kako rabote ako ostane vreme
 function smeniSesija(datum) {
 	sesija = document.getElementById(datum);
 	document.getElementById("dropButton").innerText = sesija.innerHTML;

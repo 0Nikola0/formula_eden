@@ -1,4 +1,3 @@
-// TODO ako ostavas hamburger menu samo za open a X za close nema da treba if-else tuka
 function openNav() {
     const sideNav = document.getElementById("mySidenav");
     if (sideNav.style.width != "100%"){

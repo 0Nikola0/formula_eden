@@ -21,7 +21,6 @@ def get_placeholder_team():
     return Tim.objects.get_or_create(ime="default")[0]
 
 
-# TODO isto i za ZNAME kako so e za SLIKA
 class Vozac(models.Model):
     ime = models.TextField()
     prezime = models.TextField()

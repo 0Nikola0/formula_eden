@@ -4,7 +4,6 @@
 
 * {
     margin: auto;
-    /* TODO treba so STATIC ovoa nekako ne e dobro vaka */
     --bgFile: url("../imgs/odbrojuvanjeBackground.jpg");
     /* da ne moze da selektira teksto (na mobile ne izgleda dobro inace) */
     -webkit-user-select: none;  /* Safari */
