@@ -132,8 +132,24 @@ iframe{
     }
 }
 
-@media all and (max-height: 700px){
+@media all and (max-height: 400px) and (orientation: landscape){
     iframe{
-        height: 40vh;
+        width: 95vw;
+        height: 65vh;
+    }
+    .chat-container{
+        width: 50vw;
+        height: 70vh;
+    }
+    .chat{
+        width: 48vw;
+        height: 58vh;
+    }
+    .poraka{
+        width: 45vw;
+    }
+    #message{
+        width: 38vw;
+        height: 8vmin;
     }
 }
