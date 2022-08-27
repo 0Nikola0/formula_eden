@@ -131,3 +131,9 @@ iframe{
         height: 10vmin;
     }
 }
+
+@media all and (max-height: 700px){
+    iframe{
+        height: 40vh;
+    }
+}
