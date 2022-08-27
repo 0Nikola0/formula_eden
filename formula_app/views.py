@@ -18,7 +18,7 @@ from formula_app.forms import NewUserForm
 
 
 def get_sledna_trka():
-    return Trka.objects.filter(pocetok__gte=datetime.datetime.now()).order_by("kraj").first()
+    return Trka.objects.filter(kraj__gte=datetime.datetime.now()).order_by("kraj").first()
 
 
 @require_http_methods(["GET"])
