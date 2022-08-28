@@ -17,14 +17,20 @@ from .models import Tim, Vest, Vozac, Trka
 from formula_app.forms import NewUserForm
 
 
+def get_sledna_trka_i_sesija() -> tuple:
+    sledni_trki = Trka.objects.filter(kraj__gte=datetime.datetime.now()).order_by("kraj")
+    # imase problem tuka zavrsat site sesii a stoe uste istata trka (oti cel den e datata na nea so ja dobiva od APIto) zatoa e vaka so sesii da proveruva u edno
+    s_trka, s_sesija = [sledni_trki.first(), sesija] if (sesija := sledni_trki.first().sesii.all().filter(datum__gte=timezone.now()).order_by("datum").first()) else [sledni_trki[1], sledni_trki[1].sesii.all().filter(datum__gte=timezone.now()).order_by("datum").first()]
+    return s_trka, s_sesija
+
+
 def get_sledna_trka():
-    return Trka.objects.filter(kraj__gte=datetime.datetime.now()).order_by("kraj").first()
+    return get_sledna_trka_i_sesija()[0]
 
 
 @require_http_methods(["GET"])
 def home(request):
-    sledna_trka = get_sledna_trka()
-    sledna_sesija = sledna_trka.sesii.all().filter(datum__gte=timezone.now()).order_by("datum").first()
+    sledna_trka, sledna_sesija = get_sledna_trka_i_sesija()
     context = {
         "sledna_trka": sledna_trka,
         "sledna_sesija": sledna_sesija,
