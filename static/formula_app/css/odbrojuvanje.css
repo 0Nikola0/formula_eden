@@ -87,7 +87,9 @@ body {
     cursor: pointer;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
     color: white;
-    background-color: var(--f1-crvena);
+    background-color: rgba(71, 71, 71, 0.5);
+    border-bottom: 3px solid;
+    border-color: var(--f1-crvena);
     transition: all 0.25s ease;
 }
 
@@ -114,7 +116,7 @@ body {
 /* na hover da pokaze toa gore */
 .dropdown:hover .dropdown-content {
     display: block;
-    margin-top: 52px;
+    margin-top: max(15px, 41px + 1.1vmax);;
     overflow-y: scroll;
     height: 25vh;
     background-color: rgba(0, 0, 0, 0.85);
