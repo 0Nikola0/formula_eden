@@ -20,8 +20,7 @@ from formula_app.forms import NewUserForm
 def get_sledna_trka_i_sesija() -> tuple:
     sledni_trki = Trka.objects.filter(kraj__gte=datetime.datetime.now()).order_by("kraj")
     # imase problem tuka zavrsat site sesii a stoe uste istata trka (oti cel den e datata na nea so ja dobiva od APIto) zatoa e vaka so sesii da proveruva u edno
-    s_trka, s_sesija = [sledni_trki.first(), sesija] if (sesija := sledni_trki.first().sesii.all().filter(datum__gte=timezone.now()).order_by("datum").first()) else [sledni_trki[1], sledni_trki[1].sesii.all().filter(datum__gte=timezone.now()).order_by("datum").first()]
-    return s_trka, s_sesija
+    return (sledni_trki.first(), sesija) if (sesija := sledni_trki.first().sesii.all().filter(datum__gte=timezone.now()).order_by("datum").first()) else (sledni_trki[1], sledni_trki[1].sesii.all().filter(datum__gte=timezone.now()).order_by("datum").first())
 
 
 def get_sledna_trka():
@@ -56,7 +55,7 @@ def novosti(request):
 
 @require_http_methods(["GET"])
 def plasman(request):
-    sledna_trka = Trka.objects.filter(pocetok__gte=datetime.datetime.now()).order_by("kraj").first()
+    sledna_trka = get_sledna_trka()
     vozaci = Vozac.objects.all()
     timovi = Tim.objects.all().filter(~Q(ime="default"))
 
@@ -84,9 +83,8 @@ def raspored(request):
 
 @require_http_methods(["GET"])
 def traka_info(request, traka_id): 
-    trki = Trka.objects.all()
-    selektirana_trka = trki.filter(race_id=traka_id).first()
-    sledna_trka = trki.filter(pocetok__gte=datetime.datetime.now()).order_by("pocetok").first()
+    selektirana_trka = Trka.objects.all().filter(race_id=traka_id).first()
+    sledna_trka = get_sledna_trka()
 
     context = {
         "sledna_trka": sledna_trka,
