@@ -1,3 +1,4 @@
+<hr>
 [**МКД**](#МКД) / [**ENG**](#ENG)<br>
 [**Слики**]() / [**Photos**]()
 <hr>
@@ -66,7 +67,7 @@ python manage.py runserver
 
 Responsive                 | .
 :------------------------:|:----------------------:
-![](banners/f1-mb-sc.jpg) |  ![](banners\f1-novosti-mb.jpg)
+![](banners/f1-mb-sc.jpg) |  ![](banners/f1-novosti-mb.jpg)
 
 # ENG 
 
@@ -132,4 +133,4 @@ Schedule                   |  Race info
 
 Responsive                 | .
 :------------------------:|:----------------------:
-![](banners/f1-mb-sc.jpg) |  ![](banners\f1-novosti-mb.jpg)
+![](banners/f1-mb-sc.jpg) |  ![](banners/f1-novosti-mb.jpg)
