@@ -12,6 +12,10 @@ class Tim(models.Model):
     def __str__(self):
         return f"{self.ime}"
 
+    class Meta:
+        verbose_name = "Тим"
+        verbose_name_plural = "Тимови"
+
 
 def get_placeholder_team():
     '''
@@ -32,6 +36,10 @@ class Vozac(models.Model):
 
     def __str__(self):
         return f"{self.ime} {self.prezime}"
+
+    class Meta:
+        verbose_name = "Возач"
+        verbose_name_plural = "Возачи"
     
 
 # =================================================================== #
@@ -44,6 +52,10 @@ class Sesija(models.Model):
 
     def __str__(self):
         return f"{self.session_id} {self.ime}"
+
+    class Meta:
+        verbose_name = "Сесија"
+        verbose_name_plural = "Сесии"
 
 
 class Trka(models.Model):
@@ -62,7 +74,12 @@ class Trka(models.Model):
         return f"{self.ime}"
 
     def get_closest_race(self, target):
-        return self.filter(dt__gt=target).order_by('pocetok')
+        return self.filter(dt__gt=target).order_by('kraj')
+    
+    class Meta:
+        verbose_name = "Трка"
+        verbose_name_plural = "Трки"
+
 
 
 class TrkaSesija(models.Model):
@@ -71,6 +88,10 @@ class TrkaSesija(models.Model):
 
     def __str__(self):
         return f"{self.trka}: {self.sesija}"
+    
+    class Meta:
+        verbose_name = "Трка-Сесија"
+        verbose_name_plural = "Трки-Сесии"
 
 # =================================================================== #
 
@@ -85,3 +106,7 @@ class Vest(models.Model):
 
     def __str__(self) -> str:
         return self.naslov
+    
+    class Meta:
+        verbose_name = "Вест"
+        verbose_name_plural = "Вести"

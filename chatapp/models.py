@@ -22,3 +22,5 @@ class Poraka(models.Model):
 
     class Meta:
         ordering = ('timestamp',)
+        verbose_name = "Порака"
+        verbose_name_plural = "Пораки"
