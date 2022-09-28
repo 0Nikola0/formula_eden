@@ -27,7 +27,8 @@ def get_driver_standings():
     data = list(response.json()['results'])
 
     for i, j in enumerate(data):
-        v_ime, v_prezime = j['driver_name'].split(" ")
+        print(j['driver_name'].split(" "))
+        v_ime, v_prezime = j['driver_name'].split(" ", 1)
         v_pozicija = int(j['position'] )
         v_poeni = int(j['points'])
         v_tim = Tim.objects.get(ime=j['team_name'])
