@@ -1,9 +1,10 @@
 <hr>
-[**МКД**](#МКД) / [**ENG**](#ENG)<br>
-[**Слики**]() / [**Photos**]()
+
+[**МКД**](#мкд) / [**ENG**](#eng)<br>
+[**Слики**](#слики) / [**Photos**](#photos)
 <hr>
 
-# МКД 
+# МКД
 
 Сајтот е направен со Python користејќи го Django Web Framework. Податоците за трките и пласманот се превземени со помош на API од [RapidAPI](https://rapidapi.com/), додека пак вестите се земени од македонски портали со помош на Web Scraping со BeautifulSoup4.
 <hr>
@@ -47,6 +48,13 @@ python manage.py migrate
 ```
 python manage.py runserver
 ```
+8. Ажурирање и промена на податоци
+- По вклучувањето на сајтот, податоците може да се ажурираат преку `localhost:8000/manage`
+- Промена на податоците се врши преку `localhost:8000/admin`
+
+Ажурирање                  |  Промена
+:-------------------------:|:-------------------------:
+![](banners/manage.png)    |  ![](banners/admin.png)
 
 # Слики
 
@@ -113,6 +121,13 @@ python manage.py migrate
 ```
 python manage.py runserver
 ```
+8. Updating and changing the data
+- After starting the website, the data can be updated from `localhost:8000/manage`
+- Changing the data can be done from `localhost:8000/admin`
+
+Updating                   |  Changing
+:-------------------------:|:-------------------------:
+![](banners/manage.png)    |  ![](banners/admin.png)
 
 # Photos
 
