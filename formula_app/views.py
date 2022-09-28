@@ -18,7 +18,7 @@ from formula_app.forms import NewUserForm
 
 
 def get_sledna_trka_i_sesija() -> tuple:
-    sledni_trki = Trka.objects.filter(kraj__gte=datetime.datetime.now()).order_by("kraj")
+    sledni_trki = Trka.objects.filter(status="Confirmed", kraj__gte=datetime.datetime.now()).order_by("kraj")
     # imase problem tuka zavrsat site sesii a stoe uste istata trka (oti cel den e datata na nea so ja dobiva od APIto) zatoa e vaka so sesii da proveruva u edno
     return (sledni_trki.first(), sesija) if (sesija := sledni_trki.first().sesii.all().filter(datum__gte=timezone.now()).order_by("datum").first()) else (sledni_trki[1], sledni_trki[1].sesii.all().filter(datum__gte=timezone.now()).order_by("datum").first())
 
